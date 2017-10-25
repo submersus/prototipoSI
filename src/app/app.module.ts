@@ -11,6 +11,7 @@ import { AlertComponent } from './components/alert/alert.component';
 
 import { AlertService } from "./services/alert.service";
 import { UserService } from "./services/user.service";
+import { AuthenticationService } from "./services/authentication.service";
 
 import { ROUTING } from "./app.routes";
 
