@@ -23,7 +23,7 @@ export class RegisterComponent implements OnInit {
 
   registrar() {
     this.loading = true;
-    /* this.userService.create(this.model)
+    this.userService.create(this.model)
     .subscribe(
       data => {
                 this.alertService.success('Registration successful', true);
@@ -32,7 +32,7 @@ export class RegisterComponent implements OnInit {
             error => {
                 this.alertService.error(error);
                 this.loading = false;
-            }); */
+            }); 
 }
 
 }

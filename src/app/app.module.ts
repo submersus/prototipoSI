@@ -14,13 +14,17 @@ import { UserService } from "./services/user.service";
 import { AuthenticationService } from "./services/authentication.service";
 
 import { ROUTING } from "./app.routes";
+import { HomeComponent } from './components/home/home.component';
+import { InicioComponent } from './components/inicio/inicio.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    AlertComponent
+    AlertComponent,
+    HomeComponent,
+    InicioComponent
   ],
   imports: [
     BrowserModule,
@@ -30,7 +34,8 @@ import { ROUTING } from "./app.routes";
   ],
   providers: [
     AlertService,
-    UserService
+    UserService,
+    AuthenticationService
   ],
   bootstrap: [AppComponent]
 })
