@@ -1,1 +1,12 @@
-Estoy logeado
+<div class="col-md-6 col-md-offset-3">
+  <h1>Hola {{currentUser.name}}!</h1>
+  <p>Probando</p>
+  <h3>Lista de usuarios:</h3>
+  <ul>
+      <li *ngFor="let user of users">
+          {{user.username}} ({{user.name}} {{user.cedula}})
+          <!-- - <a (click)="deleteUser(user._id)">Delete</a> -->
+      </li>
+  </ul>
+  <p><a [routerLink]="['/login']">Desconectar</a></p>
+</div>
