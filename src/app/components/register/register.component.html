@@ -6,14 +6,14 @@
                   <h2>Registrar</h2>
                   <form name="form" (ngSubmit)="f.form.valid && registrar()" #f="ngForm" novalidate>
                       <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
-                          <label for="firstName">Primer Nombre</label>
-                          <input type="text" class="form-control" name="firstName" [(ngModel)]="model.firstName" #firstName="ngModel" required />
-                          <div *ngIf="f.submitted && !firstName.valid" class="help-block">Primer nombre requerido</div>
+                          <label for="nombre">Nombre</label>
+                          <input type="text" class="form-control" name="nombre" [(ngModel)]="model.firstName" #nombre="ngModel" required />
+                          <div *ngIf="f.submitted && !firstName.valid" class="help-block">Nombre requerido</div>
                       </div>
                       <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
-                          <label for="lastName">Apellido</label>
-                          <input type="text" class="form-control" name="lastName" [(ngModel)]="model.lastName" #lastName="ngModel" required />
-                          <div *ngIf="f.submitted && !lastName.valid" class="help-block">Apellido requerido</div>
+                          <label for="cedula">Cedula</label>
+                          <input type="text" class="form-control" name="cedula" [(ngModel)]="model.cedula" #cedula="ngModel" required />
+                          <div *ngIf="f.submitted && !lastName.valid" class="help-block">Cedula requerida</div>
                       </div>
                       <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
                           <label for="username">Usuario</label>
