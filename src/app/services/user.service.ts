@@ -7,8 +7,8 @@ export class UserService {
   constructor(private http: Http) {}
 
     
-  getAll() {
-    return this.http.get('/api/usuarios').map((response: Response) => response.json());
+  getAll(CurrentUser) {
+    return this.http.get('/api/usuarios?token='+ CurrentUser).map((response: Response) => response.json());
   }
 
   getById(_id: string) {
