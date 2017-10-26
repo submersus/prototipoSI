@@ -1,4 +1,3 @@
-import { ViewChild } from '@angular/core/src/metadata/di';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { Http, Response } from '@angular/http';
