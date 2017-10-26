@@ -12,11 +12,17 @@ import { AlertComponent } from './components/alert/alert.component';
 import { AlertService } from "./services/alert.service";
 import { UserService } from "./services/user.service";
 import { AuthenticationService } from "./services/authentication.service";
-import { AuthGuardService } from "./services/auth-guard.service"
+import { AuthGuardService } from "./services/auth-guard.service";
+import { PacienteService } from "./services/paciente.service";
 
 import { ROUTING } from "./app.routes";
 import { HomeComponent } from './components/home/home.component';
 import { InicioComponent } from './components/inicio/inicio.component';
+import { RpacienteComponent } from './components/rpaciente/rpaciente.component';
+import { AsigPacienteComponent } from './components/asig-paciente/asig-paciente.component';
+import { PacientesComponent } from './components/pacientes/pacientes.component';
+import { PacienteComponent } from './components/paciente/paciente.component';
+import { NavbarComponent } from './components/shared/navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +31,12 @@ import { InicioComponent } from './components/inicio/inicio.component';
     RegisterComponent,
     AlertComponent,
     HomeComponent,
-    InicioComponent
+    InicioComponent,
+    RpacienteComponent,
+    AsigPacienteComponent,
+    PacientesComponent,
+    PacienteComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
@@ -37,7 +48,8 @@ import { InicioComponent } from './components/inicio/inicio.component';
     AlertService,
     UserService,
     AuthenticationService,
-    AuthGuardService
+    AuthGuardService,
+    PacienteService
   ],
   bootstrap: [AppComponent]
 })

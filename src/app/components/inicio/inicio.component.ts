@@ -23,7 +23,7 @@ export class InicioComponent implements OnInit {
   // }
 
   private loadAllUsers() {
-      this.userService.getAll(this.currentUser).subscribe(users => { this.users = users; });
+      this.userService.getAll(this.currentUser.token).subscribe(users => { this.users = users; });
   }
 
 }
