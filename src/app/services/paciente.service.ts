@@ -24,10 +24,10 @@ export class PacienteService {
     return this.http.request('/api/paciente/upload', formData);
   }
 
-  buscarPaciente( termino: string) {
+  buscarPaciente( listaPacientes, termino: string) {
     let pacientesArr: any[] = [];
     termino = termino.toLowerCase();
-    this.pacientes
+    this.pacientes = listaPacientes
 
     for ( let paciente of this.pacientes) {
         let nombre = paciente.nombre.toLowerCase();
