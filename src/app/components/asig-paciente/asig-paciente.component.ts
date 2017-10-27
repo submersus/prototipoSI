@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router'
+import { PacienteService } from '../../services/paciente.service';
 
 @Component({
   selector: 'app-asig-paciente',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AsigPacienteComponent implements OnInit {
 
-  constructor() { }
+  pacientes:any[]=[];
+
+  constructor(private pacienteService: PacienteService) { }
 
   ngOnInit() {
+    this.loadAllPacientes()
   }
+
+private loadAllPacientes() {
+  this.pacienteService.getAll().subscribe(pacientes => { this.pacientes = pacientes; });
+}
 
 }

@@ -29,7 +29,7 @@
                         <div *ngIf="f.submitted && !username.valid" class="help-block">Usuario requerido</div>
                         <div class="form-group"  [ngClass]="{ 'has-error': f.submitted && !password.valid }">
                             <label for="reg_password_confirm" class="sr-only">Contraseña</label>
-                            <input type="password" class="form-control" id="reg_password_confirm" name="reg_password_confirm" placeholder="Contraseña">
+                            <input type="password" class="form-control" id="reg_password_confirm" name="password" placeholder="Contraseña" [(ngModel)]="model.password" #password="ngModel" required>
                         </div>
                         <div *ngIf="f.submitted && !password.valid" class="help-block">contraseña requerida</div>
                     </div>
