@@ -1,6 +1,31 @@
-<nav class="nav flex-column">
-  <a class="nav-link active" href="#">Active</a>
-  <a class="nav-link" href="#">Link</a>
-  <a class="nav-link" href="#">Link</a>
-  <a class="nav-link disabled" href="#">Disabled</a>
-</nav>
+        <div class="logo text-center">
+          <img src="http://www.cristalim.cl/images/productos/1302115128/gr_servilletas1.jpg" class="img-responsive img-thumbnail" alt="Logo">
+        </div>
+        <br>
+        <div class="left-navigation">
+          <ul class="list">
+            <h5><strong>Pacientes</strong></h5>
+            <li class="nav-item" routerLinkActive="active">
+              <a [routerLink]="'/rpaciente'" class="nav-link">Registrar Paciente</a>
+            </li>
+            <li class="nav-item" routerLinkActive="active">
+              <a [routerLink]="'/home'" class="nav-link">Crear Historia Pac.</a>
+            </li>
+            <li class="nav-item" routerLinkActive="active">
+              <a [routerLink]="'/pacientes'" class="nav-link">Lista de Pacientes</a>
+            </li>
+            <li class="nav-item" routerLinkActive="active">
+              <a [routerLink]="'/apaciente'" class="nav-link">Asig. Paciente a estudiante</a>
+            </li>
+          </ul>
+          <br>
+          <ul class="list">
+            <h5><strong>HOBBIES</strong></h5>
+            <li>Hiking</li>
+            <li>Rafting</li>
+            <li>Badminton</li>
+            <li>Tennis</li>
+            <li>Sketching</li>
+            <li>Horse Riding</li>
+          </ul>
+        </div>

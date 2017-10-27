@@ -1,4 +1,9 @@
-<div class="col-md-6 col-md-offset-3">
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-2 col-sm-4 sidebar1">
+      <app-navbar></app-navbar>
+    </div>
+<div class="col-md-10 col-sm-8 main-content">
   <h1>Hola {{currentUser.name}}!</h1>
   <p>Probando</p>
   <h3>Lista de usuarios:</h3>
@@ -17,4 +22,6 @@
     <button [routerLink]="'/home'"      type="button" class="btn btn-secondary">mas...  </button>  
   </div>
   <p><a [routerLink]="['/login']">Desconectar</a></p>
+</div>
+</div>
 </div>
