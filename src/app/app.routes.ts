@@ -16,7 +16,7 @@ const ROUTES: Routes = [
   { path: 'home', component: InicioComponent, canActivate:[AuthGuardService]},
   { path: 'rpaciente', component: RpacienteComponent, canActivate:[AuthGuardService]},
   { path: 'apaciente', component: AsigPacienteComponent, canActivate:[AuthGuardService]},
-  { path: 'pacientes', component: PacientesComponent, canActivate:[AuthGuardService]},
+  { path: 'pacientes', component: PacientesComponent, /* canActivate:[AuthGuardService] */},
   { path: 'register', component: RegisterComponent },
   {path:'**', pathMatch:'full', redirectTo: ''}
 ];

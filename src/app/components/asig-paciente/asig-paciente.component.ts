@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router'
 import { PacienteService } from '../../services/paciente.service';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-asig-paciente',
@@ -8,17 +9,27 @@ import { PacienteService } from '../../services/paciente.service';
   styleUrls: ['./asig-paciente.component.css']
 })
 export class AsigPacienteComponent implements OnInit {
-
+  currentUser;
   pacientes:any[]=[];
+  users = [];
 
-  constructor(private pacienteService: PacienteService) { }
+  constructor(private pacienteService: PacienteService,
+              private userService: UserService) {
+              
+    this.currentUser = JSON.parse(localStorage.getItem('token'));
+               }
 
   ngOnInit() {
-    this.loadAllPacientes()
+    this.loadAllPacientes();
+    this.loadAllUsers();
   }
 
 private loadAllPacientes() {
-  this.pacienteService.getAll().subscribe(pacientes => { this.pacientes = pacientes; });
+  this.pacienteService.getAll(this.currentUser.token).subscribe(pacientes => { this.pacientes = pacientes; });
 }
+private loadAllUsers() {
+  this.userService.getAll(this.currentUser.token).subscribe(users => { this.users = users; });
+}
+
 
 }

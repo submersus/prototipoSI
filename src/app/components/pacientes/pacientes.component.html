@@ -4,7 +4,13 @@
             <app-navbar></app-navbar>
         </div>
         <div class="col-md-10 col-sm-8 main-content">
-          pacientes works
+                <li *ngFor="let paciente of pacientes">
+                        {{paciente.username}} ({{paciente.name}} {{paciente.cedula}})
+                        <!-- - <a (click)="deleteUser(user._id)">Delete</a> -->
+                </li>
+
+
+          <button [routerLink]="'/home'" class="btn btn-outline-danger btn-block">REGRESAR</button>
         </div>
     </div>
 </div>

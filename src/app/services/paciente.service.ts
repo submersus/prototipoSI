@@ -8,16 +8,16 @@ export class PacienteService {
 
    }
 
-  getAll() {
-    return this.http.get('/api/paciente').map((response: Response) => response.json());
+  getAll(currentUser) {
+    return this.http.get('/api/pacientes').map((response: Response) => response.json());
   }
 
   getById(_id: string) {
-      return this.http.get('/api/paciente/' + _id).map((response: Response) => response.json());
+      return this.http.get('/api/pacientes/' + _id).map((response: Response) => response.json());
   }
 
   create(paciente) {
-      return this.http.post('/api/paciente/registrar', paciente);
+      return this.http.post('/api/pacientes', paciente);
   }
 
   upload(formData){
