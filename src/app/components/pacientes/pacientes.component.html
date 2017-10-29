@@ -4,12 +4,15 @@
             <app-navbar></app-navbar>
         </div>
         <div class="col-md-10 col-sm-8 main-content">
-                <li *ngFor="let paciente of pacientes">
-                        {{paciente.username}} ({{paciente.name}} {{paciente.cedula}})
-                        <!-- - <a (click)="deleteUser(user._id)">Delete</a> -->
-                </li>
-
-
+            <div *ngFor="let paciente of pacientes; let i = index" class="col-md-3">
+                <div class="card text-center">
+                    <div class="card-block">
+                        <h4 class="card-title">{{paciente.firstname}} {{paciente.lastname}}</h4>
+                        <p class="card-text"> C.I: {{paciente.cedula}}, atencion: {{paciente.semestre}} </p>
+                        <button [routerLink]="'/historia'" class="btn btn-small btn-outline-primary">Historia Clinica</button>
+                    </div>
+                </div>
+            </div>          
           <button [routerLink]="'/home'" class="btn btn-outline-danger btn-block">REGRESAR</button>
         </div>
     </div>

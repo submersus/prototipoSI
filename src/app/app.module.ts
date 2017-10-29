@@ -23,6 +23,7 @@ import { AsigPacienteComponent } from './components/asig-paciente/asig-paciente.
 import { PacientesComponent } from './components/pacientes/pacientes.component';
 import { PacienteComponent } from './components/paciente/paciente.component';
 import { NavbarComponent } from './components/shared/navbar/navbar.component';
+import { CrearComponent } from './components/historias/crear/crear.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { NavbarComponent } from './components/shared/navbar/navbar.component';
     AsigPacienteComponent,
     PacientesComponent,
     PacienteComponent,
-    NavbarComponent
+    NavbarComponent,
+    CrearComponent
   ],
   imports: [
     BrowserModule,

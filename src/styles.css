@@ -23,7 +23,6 @@
     border-radius: 100% !important;
 }
 .list {
-    color: #fff !important;
     list-style: none !important;
     padding-left: 0px !important;
 }
@@ -34,7 +33,7 @@
     padding: 5px 0px 5px 40px !important;
 }
 
-.list> li, a{
+.list> li> a{
     color: #fff !important;
 }
 .list>li:hover {
@@ -43,4 +42,17 @@
     color: white !important;
     font-weight: bolder !important;
     padding-left: 35px !important;
+}
+
+/* PARA LOS QUE NECESITAN UN SCROLLBAR */
+.scrollBarClass {
+    height:150px;
+    overflow-y: scroll;
+  }
+
+/* Main Content */
+
+.main-content{
+    margin-top: 40px;
+    
 }

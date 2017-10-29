@@ -6,20 +6,27 @@
         <div class="col-md-10 col-sm-8 main-content">
           <div class="container">
               <div class="row">
-                  <div class="col-md-6">
+                  <div class="col-md-4">
+                    <div class="scrollBarClass">
                         <li *ngFor="let paciente of pacientes">
-                                {{paciente.username}} ({{paciente.name}} {{paciente.cedula}})
-                                <!-- - <a (click)="deleteUser(user._id)">Delete</a> -->
+                            {{paciente.username}} ({{paciente.name}} {{paciente.cedula}})
                         </li>
+                    </div>
                   </div>
-                  <div class=="col-md-6">
+                  <div  class="col-md-4">
+                      <button class="btn btn-circle btn-secondary">
+                        <i class="fa fa-chevron-right"></i>
+                      </button>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="scrollBarClass">
                         <li *ngFor="let user of users">
                                 {{user.username}} ({{user.name}} {{user.cedula}})
-                                <!-- - <a (click)="deleteUser(user._id)">Delete</a> -->
                         </li>
+                    </div>
                   </div>
               </div>
+              <button [routerLink]="'/home'" class="btn btn-outline-danger btn-block">REGRESAR</button>
           </div>
-          <button [routerLink]="'/home'" class="btn btn-outline-danger btn-block">REGRESAR</button>
         </div>
     </div>
