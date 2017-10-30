@@ -46,7 +46,8 @@
 
 /* PARA LOS QUE NECESITAN UN SCROLLBAR */
 .scrollBarClass {
-    height:150px;
+    height:750px;
+    overflow: auto;
     overflow-y: scroll;
   }
 
