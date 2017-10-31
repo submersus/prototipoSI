@@ -4,16 +4,28 @@
             <app-navbar></app-navbar>
         </div>
         <div class="col-md-10 col-sm-8 main-content">
-            <div *ngFor="let paciente of pacientes; let i = index" class="col-md-3">
-                <div class="card text-center">
-                    <div class="card-block">
-                        <h4 class="card-title">{{paciente.firstname}} {{paciente.lastname}}</h4>
-                        <p class="card-text"> C.I: {{paciente.cedula}}, atencion: {{paciente.semestre}} </p>
-                        <button [routerLink]="'/historia'" class="btn btn-small btn-outline-primary">Historia Clinica</button>
+            <div class="row">                
+                <div  class="card-columns" style="margin-bottom: 10px;">
+                    <div *ngFor="let paciente of pacientes;let i = index" class="card">
+                        <div class="card-block">
+                        <h4 class="card-title">{{paciente.nombre}}</h4>
+                        <p class="card-text">C.I: {{paciente.cedula}} <br>
+                                             Edad: {{paciente.edad}} <br>
+                                             sexo: {{paciente.gender}}<br>
+                                             Fecha de nacimiento:<br> {{paciente.fechanacimiento}}
+                        </p>
+                    </div>
+                    <div class="card-footer">
+                    <div>  
+                        <a [routerLink]="['/paciente',i]" class="btn btn-block btn-primary">Historia Clinica</a>
+                    </div>
+                    <small class="text-muted">{{paciente.fecharegistro}}</small>
+                    </div>
                     </div>
                 </div>
-            </div>          
-          <button [routerLink]="'/home'" class="btn btn-outline-danger btn-block">REGRESAR</button>
+            </div>
+            <hr>         
+            <button [routerLink]="'/home'" class="btn btn-outline-danger btn-block">REGRESAR</button>
         </div>
     </div>
 </div>

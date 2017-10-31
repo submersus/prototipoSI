@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Http, Response } from '@angular/http';
 import { AlertService } from '../../services/alert.service';
@@ -18,7 +18,8 @@ const URL = 'http://localhost:8000/api/upload';
 export class RpacienteComponent implements OnInit {
   model: any = {};
   loading = false;
-  @ViewChild('fileInput') fileInput;
+  semestres =["quinto","sexto","septimo","octavo","noveno"]
+  sexos=["Masculino","Femenino"]
 
   constructor(
     private http: Http,
@@ -41,22 +42,6 @@ export class RpacienteComponent implements OnInit {
                 this.loading = false;
             }); 
 }
-upload() {
-  //locate the file element meant for the file upload.
-  let fileBrowser = this.fileInput.nativeElement;
-  let formData = new FormData();
-  if (fileBrowser.files && fileBrowser.files[0]) {
-    const formData = new FormData();
-    formData.append("image", fileBrowser.files[0]);
-    this.pacienteService.upload(formData).subscribe(
-      res => {       
-        this.alertService.success('upload successful', true);
-      },
-      error => {
-        this.alertService.error(error);
-      })
-    } 
-  
-  }
+
  }
 

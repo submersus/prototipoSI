@@ -6,518 +6,158 @@
       </div>
       <div class="col-md-10 col-sm-8 main-content">
         <div class="text-center">
-            <h2>Historia clinica del paciente: {{paciente.firstname || "Prueba"}} {{paciente.lastname}}</h2>
+            <h2>Historia clinica del paciente: {{paciente.firstname || "Paciente"}} {{paciente.lastname || "de Prueba"}}</h2>
         </div>
         <div class="container scrollBarClass">
-          <form>     
+          <form (ngSubmit)="f.form.valid && guardarHistoria(f)" #f="ngForm" novalidate>     
             <div class="form-group row">
               <label class="col-sm-2 col-form-label">Nombre</label>
               <div class="col-sm-10">
-                <p class="form-control-static">{{paciente.firstname || "paciente no definido"}}</p>
+                <input class="form-control"  name="firstname" [(ngModel)]="model.firstname" type="text" placeholder='{{paciente.firstname || "Ivan" }}' readonly>
               </div>
             </div>
             <div class="form-group row">
               <label class="col-sm-2 col-form-label">Apellido:</label>
               <div class="col-sm-10">
-                <p class="form-control-static">{{paciente.lastname || "paciente no definido"}}</p>
-              </div>
+                <input class="form-control"  name="lastname" [(ngModel)]="model.lastname"  type="text" placeholder="{{paciente.lastname || 'de Menezes' }}" readonly>
+             </div>
             </div>
             <div class="form-group row">
               <label class="col-sm-2 col-form-label">Cedula:</label>
               <div class="col-sm-10">
-                <p class="form-control-static">{{paciente.Cedula || "paciente no definido"}}</p>
+                <input class="form-control"  name="cedula" [(ngModel)]="model.cedula"  type="text" placeholder="{{paciente.cedula || 'no definida' }}" readonly>    
               </div>
             </div>
             <div class="form-group row">
               <label class="col-sm-2 col-form-label">Fecha de nacimiento:</label>
               <div class="col-sm-10">
-                <p class="form-control-static">{{paciente.fechaNacimiento || "paciente no definido"}}</p>
+                  <input class="form-control"  name="fechanacimiento" [(ngModel)]="model.fechanacimiento"  type="text" placeholder="{{paciente.fechanacimiento || '30-01-1997' }}" readonly>
               </div>
             </div>
             <div class="form-group row">
               <label class="col-sm-2 col-form-label">Edad:</label>
               <div class="col-sm-10">
-                <p class="form-control-static">{{paciente.edad || "paciente no definido"}}</p>
+                  <input class="form-control"  name="edad" [(ngModel)]="model.edad"  type="text" placeholder="{{paciente.edad || '20' }}" readonly>
               </div>
             </div>
             <div class="form-group row">
               <label class="col-sm-2 col-form-label">Telefono:</label>
               <div class="col-sm-10">
-                <p class="form-control-static">{{paciente.telefono || "paciente no definido"}}</p>
+                  <input class="form-control"  name="telefono" [(ngModel)]="model.telefono"  type="text" placeholder="{{paciente.telefono || 'no definido' }}" readonly>
               </div>
             </div>
             <div class="form-group row">
               <label class="col-sm-2 col-form-label">Fecha registro:</label>
               <div class="col-sm-10">
-                <p class="form-control-static">{{paciente.fecharegistro || "paciente no definido"}}</p>
+                  <input class="form-control"  name="fecharegistro" [(ngModel)]="model.fecharegistro"  type="text" placeholder="{{paciente.fecharegistro || '20-10-2017' }}" readonly>
+              </div>
+            </div>
+            <hr>
+            <br>
+            <h5 class="text-center">Archivos de la historia</h5>
+            <hr>
+            <div class="row">
+              <div class="col-md-3">
+                <h5>Seleccione los Archivos</h5>
+                Para subir multiples archivos
+                <input type="file" ng2FileSelect [uploader]="uploader" multiple  /><br/>
+                <br>
+                Para subir un solo archivo
+                <input type="file" ng2FileSelect [uploader]="uploader" />
+              </div>
+              <div class="col-md-9" style="margin-bottom: 40px">
+                <h3>Cola de archivos</h3>
+                <p>Tamaño de la cola: {{ uploader?.queue?.length }}</p>
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th width="50%">Archivo</th>
+                      <th>Tamaño</th>
+                      <th>Progreso</th>
+                      <th>Estatus</th>
+                      <th>Acciones</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let item of uploader.queue">
+                    <td><strong>{{ item?.file?.name }}</strong></td>
+                    <td *ngIf="uploader" nowrap>{{ item?.file?.size/1024/1024 | number:'.2' }} MB</td>
+                    <td *ngIf="uploader">
+                    <div class="progress" style="margin-bottom: 0;">
+                      <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': item.progress + '%' }"></div>
+                    </div>
+                    </td>
+                    <td class="text-center">
+                      <span *ngIf="item.isSuccess"><i class="fa fa-check" aria-hidden="true"></i></span>
+                      <span *ngIf="item.isCancel"><i class="fa fa-ban" aria-hidden="true"></i></span>
+                      <span *ngIf="item.isError"><i class="fa fa-trash" aria-hidden="true"></i></span>
+                    </td>
+                    <td nowrap>
+                      <br>
+                      <button type="button" class="btn btn-success btn-xs"
+                              (click)="item.upload()" [disabled]="item.isReady || item.isUploading || item.isSuccess">
+                        <span class="fa fa-upload"></span> Upload
+                      </button>
+                      <button type="button" class="btn btn-warning btn-xs"
+                              (click)="item.cancel()" [disabled]="!item.isUploading">
+                        <span class="fa fa-ban-ban"></span> Cancel
+                      </button>
+                      <button type="button" class="btn btn-danger btn-xs"
+                              (click)="item.remove()">
+                        <span class="fa fa-trash"></span> Remove
+                      </button>
+                    </td>
+                    </tr>
+                  </tbody>
+                </table>
+                  <div>
+                  <div>
+                                   Queue progress:
+                      <div class="progress">
+                          <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': uploader.progress + '%' }"></div>
+                      </div>
+                  </div>
+                  <button type="button" class="btn btn-success btn-s"
+                          (click)="uploader.uploadAll()" [disabled]="!uploader.getNotUploadedItems().length">
+                      <span class="glyphicon glyphicon-upload"></span> Upload all
+                  </button>
+                  <button type="button" class="btn btn-warning btn-s"
+                          (click)="uploader.cancelAll()" [disabled]="!uploader.isUploading">
+                      <span class="glyphicon glyphicon-ban-circle"></span> Cancel all
+                  </button>
+                  <button type="button" class="btn btn-danger btn-s"
+                          (click)="uploader.clearQueue()" [disabled]="!uploader.queue.length">
+                      <span class="glyphicon glyphicon-trash"></span> Remove all
+                  </button>
+                </div>                
               </div>
             </div>
             <hr>
             <br>
             <h5 class="text-center">AMNESTESIA</h5>
             <hr>
-              <label>¿Alteraciones cardiovasculares?</label>
+            <div *ngFor="let pregunta of preguntas;let i = index">
+              <label>{{pregunta.nombre}}</label>
               <div class="form-group row">
-                <div class="form-check form-check-inline">
-                  <label class="form-check-label col-2 col-form-label">
-                    <input class="form-check-input" type="radio" name="altCardv" #altcardv value="si"> Si
-                  </label>
-                </div>
-                <div class="form-check form-check-inline">
-                  <label class="form-check-label col-2 col-form-label">
-                    <input class="form-check-input" type="radio" name="altCardv"  #altcardv value="no"> No
-                  </label>
-                </div>
-              </div>
-              <div *ngIf="altcardv.value == 'si'" class="form-group row">
-                <label for="example-search-input" class="col-2 col-form-label">Especifique</label>
-              <div class="col-6">
-                <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
-              </div>
-            </div>
-            <label>¿Hemorragias o sangrados frecuentes?</label>
-            <div class="form-group row">
-              <div class="form-check form-check-inline">
-                <label class="form-check-label col-2 col-form-label">
-                  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> Si
-                </label>
-              </div>
-              <div class="form-check form-check-inline">
-                <label class="form-check-label col-2 col-form-label">
-                  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> No
-                </label>
-              </div>
-            </div>
-            <div class="form-group row">
-              <label for="example-search-input" class="col-2 col-form-label">Especifique</label>
-              <div class="col-6">
-                <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
-              </div>
-            </div>
-            <label>¿Anemia u otra alteracion sanguinea?</label>
-            <div class="form-group row">
-              <div class="form-check form-check-inline">
-                <label class="form-check-label col-2 col-form-label">
-                  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> Si
-                </label>
-              </div>
-              <div class="form-check form-check-inline">
-                <label class="form-check-label col-2 col-form-label">
-                  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> No
-                </label>
-              </div>
-            </div>
-            <div class="form-group row">
-              <label for="example-search-input" class="col-2 col-form-label">Especifique</label>
-              <div class="col-6">
-                <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
-              </div>
-            </div>
-            <label>¿Enfermedades renales?</label>
-            <div class="form-group row">
-              <div class="form-check form-check-inline">
-                <label class="form-check-label col-2 col-form-label">
-                  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> Si
-                </label>
-              </div>
-              <div class="form-check form-check-inline">
-                <label class="form-check-label col-2 col-form-label">
-                  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> No
-                </label>
-              </div>
-            </div>
-            <div class="form-group row">
-              <label for="example-search-input" class="col-2 col-form-label">Especifique</label>
-              <div class="col-6">
-                <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
-              </div>
-            </div>
-            <label>¿Enfermedades epaticas?</label>
-            <div class="form-group row">
-              <div class="form-check form-check-inline">
-                <label class="form-check-label col-2 col-form-label">
-                  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> Si
-                </label>
-              </div>
-              <div class="form-check form-check-inline">
-                <label class="form-check-label col-2 col-form-label">
-                  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> No
-                </label>
-              </div>
-            </div>
-            <div class="form-group row">
-              <label for="example-search-input" class="col-2 col-form-label">Especifique</label>
-              <div class="col-6">
-                <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
-              </div>
-            </div>
-            <label>¿Asma o alguna enfermedad para respirar?</label>
-            <div class="form-group row">
-              <div class="form-check form-check-inline">
-                <label class="form-check-label col-2 col-form-label">
-                  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> Si
-                </label>
-              </div>
-              <div class="form-check form-check-inline">
-                <label class="form-check-label col-2 col-form-label">
-                  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> No
-                </label>
-              </div>
-            </div>
-            <div class="form-group row">
-              <label for="example-search-input" class="col-2 col-form-label">Especifique</label>
-              <div class="col-6">
-                <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
-              </div>
-            </div>
-            <label>¿Enfermedades Respiratorias?</label>
-            <div class="form-group row">
-              <div class="form-check form-check-inline">
-                <label class="form-check-label col-2 col-form-label">
-                  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> Si
-                </label>
-              </div>
-              <div class="form-check form-check-inline">
-                <label class="form-check-label col-2 col-form-label">
-                  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> No
-                </label>
-              </div>
-            </div>
-            <div class="form-group row">
-              <label for="example-search-input" class="col-2 col-form-label">Especifique</label>
-              <div class="col-6">
-                <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
-              </div>
-            </div>
-            <label>¿Diabetes Mellitus?</label>
-            <div class="form-group row">
-              <div class="form-check form-check-inline">
-                <label class="form-check-label col-2 col-form-label">
-                  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> Si
-                </label>
-              </div>
-              <div class="form-check form-check-inline">
-                <label class="form-check-label col-2 col-form-label">
-                  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> No
-                </label>
-              </div>
-            </div>
-            <div class="form-group row">
-              <label for="example-search-input" class="col-2 col-form-label">Especifique</label>
-              <div class="col-6">
-                <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
-              </div>
-            </div>
-            <label>¿hipertension?</label>
-            <div class="form-group row">
-              <div class="form-check form-check-inline">
-                <label class="form-check-label col-2 col-form-label">
-                  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> Si
-                </label>
-              </div>
-              <div class="form-check form-check-inline">
-                <label class="form-check-label col-2 col-form-label">
-                  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> No
-                </label>
-              </div>
-            </div>
-            <div class="form-group row">
-              <label for="example-search-input" class="col-2 col-form-label">Especifique</label>
-              <div class="col-6">
-                <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
-              </div>
-            </div>
-            <label>¿Dolores de cabeza frecuentes,migrañas, jaquecas?</label>
-            <div class="form-group row">
-              <div class="form-check form-check-inline">
-                <label class="form-check-label col-2 col-form-label">
-                  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> Si
-                </label>
-              </div>
-              <div class="form-check form-check-inline">
-                <label class="form-check-label col-2 col-form-label">
-                  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> No
-                </label>
-              </div>
-            </div>
-            <div class="form-group row">
-              <label for="example-search-input" class="col-2 col-form-label">Especifique</label>
-              <div class="col-6">
-                <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
-              </div>
-            </div>
-            <label>¿Fiebre reumatica?</label>
-            <div class="form-group row">
-              <div class="form-check form-check-inline">
-                <label class="form-check-label col-2 col-form-label">
-                  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> Si
-                </label>
-              </div>
-              <div class="form-check form-check-inline">
-                <label class="form-check-label col-2 col-form-label">
-                  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> No
-                </label>
-              </div>
-            </div>
-            <div class="form-group row">
-              <label for="example-search-input" class="col-2 col-form-label">Especifique</label>
-              <div class="col-6">
-                <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
-              </div>
-            </div>
-            <label>¿Enfermedades infecciosas?</label>
-            <div class="form-group row">
-              <div class="form-check form-check-inline">
-                <label class="form-check-label col-2 col-form-label">
-                  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> Si
-                </label>
-              </div>
-              <div class="form-check form-check-inline">
-                <label class="form-check-label col-2 col-form-label">
-                  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> No
-                </label>
-              </div>
-            </div>
-            <div class="form-group row">
-              <label for="example-search-input" class="col-2 col-form-label">Especifique</label>
-              <div class="col-6">
-                <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
-              </div>
-            </div>
-            <label>¿Enfermedades de transmision sexual?</label>
-            <div class="form-group row">
-              <div class="form-check form-check-inline">
-                <label class="form-check-label col-2 col-form-label">
-                  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> Si
-                </label>
-              </div>
-              <div class="form-check form-check-inline">
-                <label class="form-check-label col-2 col-form-label">
-                  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> No
-                </label>
-              </div>
-            </div>
-            <div class="form-group row">
-              <label for="example-search-input" class="col-2 col-form-label">Especifique</label>
-              <div class="col-6">
-                <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
-              </div>
-            </div>
-            <label>¿Enfermedades gastrointestinales?</label>
-            <div class="form-group row">
-              <div class="form-check form-check-inline">
-                <label class="form-check-label col-2 col-form-label">
-                  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> Si
-                </label>
-              </div>
-              <div class="form-check form-check-inline">
-                <label class="form-check-label col-2 col-form-label">
-                  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> No
-                </label>
-              </div>
-            </div>
-            <div class="form-group row">
-              <label for="example-search-input" class="col-2 col-form-label">Especifique</label>
-              <div class="col-6">
-                <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
-              </div>
-            </div>
-            <label>¿Dolores de oidos frecuentes o zumbidos?</label>
-            <div class="form-group row">
-              <div class="form-check form-check-inline">
-                <label class="form-check-label col-2 col-form-label">
-                  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> Si
-                </label>
-              </div>
-              <div class="form-check form-check-inline">
-                <label class="form-check-label col-2 col-form-label">
-                  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> No
-                </label>
-              </div>
-            </div>
-            <div class="form-group row">
-              <label for="example-search-input" class="col-2 col-form-label">Especifique</label>
-              <div class="col-6">
-                <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
-              </div>
-            </div>
-            <label>¿Se le inflaman los pies o las articulaciones frecuentemente?</label>
-            <div class="form-group row">
-              <div class="form-check form-check-inline">
-                <label class="form-check-label col-2 col-form-label">
-                  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> Si
-                </label>
-              </div>
-              <div class="form-check form-check-inline">
-                <label class="form-check-label col-2 col-form-label">
-                  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> No
-                </label>
-              </div>
-            </div>
-            <div class="form-group row">
-              <label for="example-search-input" class="col-2 col-form-label">Especifique</label>
-              <div class="col-6">
-                <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
-              </div>
-            </div>
-            <label>¿Enfermedades de los senos paranasales (sinusitis)?</label>
-            <div class="form-group row">
-              <div class="form-check form-check-inline">
-                <label class="form-check-label col-2 col-form-label">
-                  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> Si
-                </label>
-              </div>
-              <div class="form-check form-check-inline">
-                <label class="form-check-label col-2 col-form-label">
-                  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> No
-                </label>
-              </div>
-            </div>
-            <div class="form-group row">
-              <label for="example-search-input" class="col-2 col-form-label">Especifique</label>
-              <div class="col-6">
-                <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
-              </div>
-            </div>
-            <label>¿Respirador bucal?</label>
-            <div class="form-group row">
-              <div class="form-check form-check-inline">
-                <label class="form-check-label col-2 col-form-label">
-                  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> Si
-                </label>
-              </div>
-              <div class="form-check form-check-inline">
-                <label class="form-check-label col-2 col-form-label">
-                  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> No
-                </label>
-              </div>
-            </div>
-            <div class="form-group row">
-              <label for="example-search-input" class="col-2 col-form-label">Especifique</label>
-              <div class="col-6">
-                <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
-              </div>
-            </div>
-            <label>¿Padece usted alguna enfermedad congenita?</label>
-            <div class="form-group row">
-              <div class="form-check form-check-inline">
-                <label class="form-check-label col-2 col-form-label">
-                  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> Si
-                </label>
-              </div>
-              <div class="form-check form-check-inline">
-                <label class="form-check-label col-2 col-form-label">
-                  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> No
-                </label>
-              </div>
-            </div>
-            <div class="form-group row">
-              <label for="example-search-input" class="col-2 col-form-label">Especifique</label>
-              <div class="col-6">
-                <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
-              </div>
-            </div>
-            <label>¿Tiene algun tipo de desarreglo hormonal?</label>
-            <div class="form-group row">
-              <div class="form-check form-check-inline">
-                <label class="form-check-label col-2 col-form-label">
-                  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> Si
-                </label>
-              </div>
-              <div class="form-check form-check-inline">
-                <label class="form-check-label col-2 col-form-label">
-                  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> No
-                </label>
-              </div>
-            </div>
-            <div class="form-group row">
-              <label for="example-search-input" class="col-2 col-form-label">Especifique</label>
-              <div class="col-6">
-                <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
-              </div>
-            </div>
-            <hr>
-            <br>
-            <h5 class="text-center">Historia General</h5>
-            <hr>
-            <label>¿Alguna vez ha estado gravemente enfermo?</label>
-            <div class="form-group row">
-              <div class="form-check form-check-inline">
-                <label class="form-check-label col-2 col-form-label">
-                  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> Si
-                </label>
-              </div>
-              <div class="form-check form-check-inline">
-                <label class="form-check-label col-2 col-form-label">
-                  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> No
-                </label>
-              </div>
-            </div>
-            <div class="form-group row">
-              <label for="example-search-input" class="col-2 col-form-label">Especifique</label>
-              <div class="col-6">
-                <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
-              </div>
-            </div>
-            <label>¿Ha sido intervenido quirurgicamente?</label>
-            <div class="form-group row">
-              <div class="form-check form-check-inline">
-                <label class="form-check-label col-2 col-form-label">
-                  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> Si
-                </label>
-              </div>
-              <div class="form-check form-check-inline">
-                <label class="form-check-label col-2 col-form-label">
-                  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> No
-                </label>
-              </div>
-            </div>
-            <div class="form-group row">
-              <label for="example-search-input" class="col-2 col-form-label">Especifique</label>
-              <div class="col-6">
-                <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
-              </div>
-            </div>
-            <label>¿Toma mas de ocho vasos de agua al dia?</label>
-            <div class="form-group row">
-              <div class="form-check form-check-inline">
-                <label class="form-check-label col-2 col-form-label">
-                  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> Si
-                </label>
-              </div>
-              <div class="form-check form-check-inline">
-                <label class="form-check-label col-2 col-form-label">
-                  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> No
-                </label>
-              </div>
-            </div>
-            <div class="form-group row">
-              <label for="example-search-input" class="col-2 col-form-label">Especifique</label>
-              <div class="col-6">
-                <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
-              </div>
-            </div>
-            <label>¿Toma frecuentemente aspira o similar?</label>
-            <div class="form-group row">
-              <div class="form-check form-check-inline">
-                <label class="form-check-label col-2 col-form-label">
-                  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> Si
-                </label>
-              </div>
-              <div class="form-check form-check-inline">
-                <label class="form-check-label col-2 col-form-label">
-                  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> No
-                </label>
-              </div>
-            </div>
-            <div class="form-group row">
-              <label for="example-search-input" class="col-2 col-form-label">Especifique</label>
-              <div class="col-6">
-                <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
-              </div>
-            </div>       
+                  <div *ngFor="let v of valores" class="form-check form-check-inline">
+                      <label class="form-check-label col-2 col-form-label">
+                          <input class="form-check-input" type="radio" name="pregunta{{i}}" [(ngModel)]="pregunta.valor" value="{{v}}"> {{v}}
+                      </label>
+                  </div>
+               </div>  <!-- fin del form-group -->
+                 <div *ngIf="pregunta.valor == 'si'" class="form-group row">
+                       <label for="example-search-input" class="col-2 col-form-label">Especifique</label>
+                       <div class="col-6">
+                         <textarea [(ngModel)]="pregunta.especifique" class="form-control" name="especifique{{i}}" rows="3"></textarea>
+                       </div>
+                  </div>
+             </div>  <!-- Fin del ngFor -->
+             <div class="form-group">
+              <button [disabled]="loading" class="btn btn-primary">Register</button>
+              <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+              <a [routerLink]="['/home']" class="btn btn-link">regresar</a>
+          </div>
           </form>
         </div>
-        <button [routerLink]="'/home'" class="btn btn-outline-danger btn-block">REGRESAR</button>
   </div>
 </div>
