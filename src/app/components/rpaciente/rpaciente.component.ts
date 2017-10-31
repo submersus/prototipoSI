@@ -18,7 +18,13 @@ const URL = 'http://localhost:8000/api/upload';
 export class RpacienteComponent implements OnInit {
   model: any = {};
   loading = false;
-  semestres =["quinto","sexto","septimo","octavo","noveno"]
+  semestres =[
+    {name:'Quinto', value:'5', checked:false},
+    {name:'Sexto', value:'6', checked:false},
+    {name:'Septimo', value:'7', checked:false},
+    {name:'Octavo', value:'8', checked:false},
+    {name:'Noveno', value:'9', checked:false}
+  ]
   sexos=["Masculino","Femenino"]
 
   constructor(
