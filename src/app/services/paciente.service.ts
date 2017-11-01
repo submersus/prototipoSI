@@ -20,6 +20,10 @@ export class PacienteService {
       return this.http.post('/api/pacientes/?token='+currentUser, paciente);
   }
 
+  asignarPaciente(pacientId,userId,currentUser){
+      return this.http.post('/api/pacientes/'+pacientId+'/'+userId+'/?token='+currentUser,pacientId,userId);
+  }
+
   buscarPaciente( listaPacientes, termino: string) {
     let pacientesArr: any[] = [];
     termino = termino.toLowerCase();

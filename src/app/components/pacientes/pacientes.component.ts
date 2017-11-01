@@ -7,7 +7,16 @@ import { PacienteService } from '../../services/paciente.service';
 })
 export class PacientesComponent implements OnInit {
 
-  pacientes=[{}]
+  pacientes=[{
+    firstname:"",
+    lastname:"",
+    identifier:"",
+    age:"",
+    gender:"",
+    birthdate:"",
+    _id:"",
+    registerdate:""
+  }];
   currentUser;
   constructor(private pacienteService: PacienteService) {
     this.currentUser = JSON.parse(localStorage.getItem('token'));

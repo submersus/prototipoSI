@@ -10,56 +10,68 @@
                 <div class="col-md-12">
                     <h2>Registrar</h2>
                     <form name="form" (ngSubmit)="f.form.valid && registrarPaciente()" #f="ngForm" novalidate>
-                        <div class="form-group row" [ngClass]="{ 'has-error': f.submitted && !cedula.valid }">
+                        <div class="form-group row" [ngClass]="{ 'has-error': f.submitted && !identifier.valid }">
                             <label for="nombre">Nombre:</label>
-                            <input placeholder="Primer nombre" type="text" class="form-control" name="nombre" [(ngModel)]="model.firstname" #firstname="ngModel" required />
+                            <input placeholder="Primer nombre" type="text" class="form-control" name="firstname" [(ngModel)]="model.firstname" #firstname="ngModel" required />
                             <div *ngIf="f.submitted && !firstname.valid" class="help-block">Nombre requerido</div>
                         </div>
-                        <div class="form-group row" [ngClass]="{ 'has-error': f.submitted && !cedula.valid }">
+                        <div class="form-group row" [ngClass]="{ 'has-error': f.submitted && !identifier.valid }">
                             <label for="apellido">Apellido:</label>
-                            <input placeholder="Apellidos" type="text" class="form-control" name="apellido" [(ngModel)]="model.lastname" #lastname="ngModel" required />
+                            <input placeholder="Apellidos" type="text" class="form-control" name="lastname" [(ngModel)]="model.lastname" #lastname="ngModel" required />
                             <div *ngIf="f.submitted && !lastname.valid" class="help-block">Apellido requerido</div>
                         </div>
-                        <div class="form-group row" [ngClass]="{ 'has-error': f.submitted && !cedula.valid }">
+                        <div class="form-group row" [ngClass]="{ 'has-error': f.submitted && !identifier.valid }">
                             <label for="telefono">telefono:</label>
-                            <input placeholder="Telefono" type="tel" class="form-control" name="nombre" [(ngModel)]="model.telefono" #telefono="ngModel" required />
-                            <div *ngIf="f.submitted && !telefono.valid" class="help-block">Telefono requerido</div>
+                            <input placeholder="Telefono" type="tel" class="form-control" name="telephone" [(ngModel)]="model.telephone" #telefono="ngModel" required />
+                            <div *ngIf="f.submitted && !telephone.valid" class="help-block">Telefono requerido</div>
                         </div>
-                        <div class="form-group row" [ngClass]="{ 'has-error': f.submitted && !cedula.valid }">
+                        <div class="form-group row" [ngClass]="{ 'has-error': f.submitted && !identifier.valid }">
                             <label for="cedula">Cedula:</label>
-                            <input placeholder="Cedula" type="text" class="form-control" name="cedula" [(ngModel)]="model.cedula" #cedula="ngModel" required />
-                            <div *ngIf="f.submitted && !cedula.valid" class="help-block">Cedula requerida</div>
+                            <input placeholder="Cedula" type="text" class="form-control" name="identifier" [(ngModel)]="model.identifier" #cedula="ngModel" required />
+                            <div *ngIf="f.submitted && !identifier.valid" class="help-block">Cedula requerida</div>
                         </div>
-                        <div class="form-group row" [ngClass]="{ 'has-error': f.submitted && !cedula.valid }">
+                        <div class="form-group row" [ngClass]="{ 'has-error': f.submitted && !identifier.valid }">
                             <label for="fecha">fecha de nacimiento:</label>
-                            <input placeholder="YYYY/MM/DD" type="text" class="form-control" name="fecha" [(ngModel)]="model.fechanacimiento" #fecha="ngModel" required />
-                            <div *ngIf="f.submitted && !fecha.valid" class="help-block">Fecha requerida</div>
+                            <input placeholder="YYYY/MM/DD" type="text" class="form-control" name="birthdate" [(ngModel)]="model.birthdate" #fecha="ngModel" required />
+                            <div *ngIf="f.submitted && !birthdate.valid" class="help-block">Fecha requerida</div>
                         </div>
-                        <div class="form-group row" [ngClass]="{ 'has-error': f.submitted && !cedula.valid }">
+                        <div class="form-group row" [ngClass]="{ 'has-error': f.submitted && !identifier.valid }">
                             <label for="edad">Edad:</label>
-                            <input placeholder="Edad" type="text" class="form-control" name="edad" [(ngModel)]="model.edad" #edad="ngModel" required />
-                            <div *ngIf="f.submitted && !edad.valid" class="help-block">Edad requerida</div>
+                            <input placeholder="Edad" type="text" class="form-control" name="age" [(ngModel)]="model.age" #edad="ngModel" required />
+                            <div *ngIf="f.submitted && !age.valid" class="help-block">Edad requerida</div>
                         </div>
-                        <div class="form-group row" [ngClass]="{ 'has-error': f.submitted && !cedula.valid }">
+                        <div class="form-group row" [ngClass]="{ 'has-error': f.submitted && !identifier.valid }">
                             <div *ngFor="let s of sexos" class="form-check form-check-inline">
                                 <label class="form-check-label col-2 col-form-label">
-                                    <input class="form-check-input" type="radio" name="sexo" [(ngModel)]="model.gender" value="{{s}}"> {{s}}
+                                    <input class="form-check-input" type="radio" name="gender" [(ngModel)]="model.gender" value="{{s}}"> {{s}}
                                 </label>
                             </div>
                         </div>
-                          <div class="form-group row" [ngClass]="{ 'has-error': f.submitted && !cedula.valid }">
+                          <div class="form-group row" [ngClass]="{ 'has-error': f.submitted && !identifier.valid }">
                               <label for="direccion">direccion 1:</label>
-                              <input placeholder="Direccion corta" type="text" class="form-control" name="direccion" [(ngModel)]="model.direccion" #direccion="ngModel" required />
+                              <input placeholder="Direccion corta" type="text" class="form-control" name="address" [(ngModel)]="model.address" #direccion="ngModel" required />
                               <div *ngIf="f.submitted && !direccion.valid" class="help-block">Direccion requerido</div>
                           </div>
-                              <div class="form-group row">
-                                  <label> Semestre por el cual sera atendido </label>
-                                  <div *ngFor="let semestre of semestres;let i = index" class="form-check form-check-inline">
-                                    <label class="form-check-label">
-                                      <input class="form-check-input" type="checkbox" name="semestres" [(ngModel)]="semestre.checked" value="{{semestre.value}}">{{semestre.name}}
-                                    </label>
-                                  </div>
-                              </div>
+                          <br>
+                          <hr>
+                          <h5>Semestres por los que sera atendidos</h5>
+                          <hr>
+                          <div *ngFor="let semestre of semestres;let i = index">
+                                <label>{{semestre.name}}</label>
+                                <div class="form-group row">
+                                    <div *ngFor="let v of values" class="form-check form-check-inline">
+                                        <label class="form-check-label col-2 col-form-label">
+                                            <input class="form-check-input" type="radio" name="semester{{i}}" [(ngModel)]="semestre.value" value="{{v}}"> {{v}}
+                                        </label>
+                                    </div>
+                                 </div>  <!-- fin del form-group -->
+                                   <div *ngIf="semestre.value == 'si'" class="form-group row">
+                                         <label for="example-search-input" class="col-2 col-form-label">Especifique</label>
+                                         <div class="col-6">
+                                           <textarea [(ngModel)]="semestre.specify" class="form-control" name="specify{{i}}" rows="3"></textarea>
+                                         </div>
+                                    </div>
+                               </div>  <!-- Fin del ngFor -->
                           <div class="form-group">
                               <button [disabled]="loading" class="btn btn-primary">Register</button>
                               <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />

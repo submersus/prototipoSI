@@ -20,12 +20,13 @@ export class RpacienteComponent implements OnInit {
   loading = false;
   currentUser
   semestres =[
-    {name:'Quinto', value:'5', checked:false},
-    {name:'Sexto', value:'6', checked:false},
-    {name:'Septimo', value:'7', checked:false},
-    {name:'Octavo', value:'8', checked:false},
-    {name:'Noveno', value:'9', checked:false}
+    {name:'Sera atendido por el quinto:', value:'no',specify:""},
+    {name:'Sera atendido por el Sexto', value:'no',specify:""},
+    {name:'Sera atendido por el Septimo', value:'no',specify:""},
+    {name:'Sera atendido por el Octavo', value:'no',specify:""},
+    {name:'Sera atendido por el Noveno', value:'no',specify:""}
   ]
+  values=["si","no"];
   sexos=["Masculino","Femenino"]
 
   constructor(

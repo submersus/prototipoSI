@@ -9,27 +9,27 @@
                     <div class="login-group">
                         <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
                             <label for="reg_username" class="sr-only">Nombre</label>
-                            <input type="text" class="form-control" id="reg_username" name="nombre" placeholder="Nombre" [(ngModel)]="model.firstname" #firstname="ngModel" required >
+                            <input type="text" class="form-control" id="reg_username" name="firstname" placeholder="Nombre" [(ngModel)]="model.firstname" #firstname="ngModel" required >
                         </div>
                         <div *ngIf="f.submitted && !firstname.valid" class="help-block">Nombre requerido</div>
                         <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
                             <label for="reg_password" class="sr-only">Apellido</label>
-                            <input type="text" class="form-control" id="reg_password" placeholder="Apellido" name="apellido" [(ngModel)]="model.lastname" #lastname="ngModel" required>
+                            <input type="text" class="form-control" id="reg_password" placeholder="lastname" name="apellido" [(ngModel)]="model.lastname" #lastname="ngModel" required>
                         </div>
                         <div *ngIf="f.submitted && !lastname.valid" class="help-block">apellido requerido</div>
                         <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
                             <label for="reg_email" class="sr-only">Cedula</label>
-                            <input type="text" class="form-control" id="reg_email" placeholder="Cedula" name="cedula" [(ngModel)]="model.cedula" #cedula="ngModel" required>
+                            <input type="text" class="form-control" id="reg_email" placeholder="identifier" name="identifier" [(ngModel)]="model.identifier" #identifier="ngModel" required>
                         </div>
-                        <div *ngIf="f.submitted && !cedula.valid" class="help-block">Cedula requerida</div>
+                        <div *ngIf="f.submitted && !identifier.valid" class="help-block">Cedula requerida</div>
                         <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
                             <label for="reg_fullname" class="sr-only">Usuario</label>
-                            <input type="text" class="form-control" id="reg_fullname" name="username" placeholder="Usuario" [(ngModel)]="model.username" #username="ngModel" required >
+                            <input type="text" class="form-control" name="username" placeholder="Usuario" [(ngModel)]="model.username" #username="ngModel" required >
                         </div>
                         <div *ngIf="f.submitted && !username.valid" class="help-block">Usuario requerido</div>
                         <div class="form-group"  [ngClass]="{ 'has-error': f.submitted && !password.valid }">
                             <label for="reg_password_confirm" class="sr-only">Contraseña</label>
-                            <input type="password" class="form-control" id="reg_password_confirm" name="password" placeholder="Contraseña" [(ngModel)]="model.password" #password="ngModel" required>
+                            <input type="password" class="form-control" name="password" placeholder="Contraseña" [(ngModel)]="model.password" #password="ngModel" required>
                         </div>
                         <div *ngIf="f.submitted && !password.valid" class="help-block">contraseña requerida</div>
                     </div>

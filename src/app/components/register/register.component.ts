@@ -12,13 +12,7 @@ import { UserService } from '../../services/user.service';
 })
 export class RegisterComponent implements OnInit {
 
-  model: any = {
-    firstname:"",
-    lastname:"",
-    cedula:"",
-    username:"",
-    password:""
-  };
+  model: any = {};
   loading = false;
   constructor(private router: Router,
     private userService: UserService,

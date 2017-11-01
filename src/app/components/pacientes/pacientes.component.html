@@ -6,13 +6,13 @@
         <div class="col-md-10 col-sm-8 main-content">
             <div class="row">                
                 <div  class="card-columns" style="margin-bottom: 10px;">
-                    <div *ngFor="let paciente of pacientes;let i = index" class="card">
+                    <div *ngFor="let paciente of pacientes" class="card">
                         <div class="card-block">
                         <h4 class="card-title">{{paciente.firstname}} {{paciente.lastname}}</h4>
-                        <p class="card-text">C.I: {{paciente.cedula}} <br>
-                                             Edad: {{paciente.edad}} <br>
+                        <p class="card-text">C.I: {{paciente.identifier}} <br>
+                                             Edad: {{paciente.age}} <br>
                                              sexo: {{paciente.gender}}<br>
-                                             Fecha de nacimiento:<br> {{paciente.fechanacimiento}}
+                                             Fecha de nacimiento:<br> {{paciente.birthdate}}
                         </p>
                     </div>
                     <div class="card-footer">
@@ -27,7 +27,7 @@
                             </div>
                         </div>
                         <br>
-                    <small class="text-muted">{{paciente.fecharegistro}}</small>
+                    <small class="text-muted">{{paciente.registerdate}}</small>
                     </div>
                     </div>
                 </div>

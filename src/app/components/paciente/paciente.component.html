@@ -4,7 +4,33 @@
             <app-navbar></app-navbar>
         </div>
         <div class="col-md-10 col-sm-8 main-content">
-          paciente works
+          <table class="table table-bordered table-dark">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Apellido</th>
+        <th scope="col">Cedula</th>
+        <th scope="col">Edad</th>
+        <th scope="col">Sexo</th>
+        <th scope="col">Fecha De Nacimiento</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">1</th>
+        <td>{{paciente.firstname}}</td>
+        <td>{{paciente.lastname}}</td>
+        <td>{{paciente.cedula}}</td>
+        <td>{{paciente.edad}}</td>
+        <td>{{paciente.gender}}</td>
+        <td>{{paciente.fechanacimiento}}</td>
+      </tr>
+    </tbody>
+  </table>
+    <button class="btn2 btn-1 btn-1e">Añadir Historia</button>
+      <button class="btn2 btn-1 btn-1e">Ver Historia</button>
+        <button class="btn2 btn-1 btn-1e">Regresar</button>
         </div>
     </div>
 </div>
