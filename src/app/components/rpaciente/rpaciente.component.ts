@@ -39,9 +39,9 @@ export class RpacienteComponent implements OnInit {
 
   ngOnInit() {
   }
-  registrarPaciente() {
+  registrarPaciente(formulario) {
     this.loading = true;
-    this.pacienteService.create(this.model, this.currentUser.token)
+    this.pacienteService.create(formulario, this.currentUser.token)
     .subscribe(
       data => {
                 this.alertService.success('Registration successful', true);

@@ -9,7 +9,7 @@
                 <alert></alert>
                 <div class="col-md-12">
                     <h2>Registrar</h2>
-                    <form name="form" (ngSubmit)="f.form.valid && registrarPaciente()" #f="ngForm" novalidate>
+                    <form name="form" (ngSubmit)="f.form.valid && registrarPaciente(f.value)" #f="ngForm" novalidate>
                         <div class="form-group row" [ngClass]="{ 'has-error': f.submitted && !identifier.valid }">
                             <label for="nombre">Nombre:</label>
                             <input placeholder="Primer nombre" type="text" class="form-control" name="firstname" [(ngModel)]="model.firstname" #firstname="ngModel" required />
@@ -50,7 +50,7 @@
                           <div class="form-group row" [ngClass]="{ 'has-error': f.submitted && !identifier.valid }">
                               <label for="direccion">direccion 1:</label>
                               <input placeholder="Direccion corta" type="text" class="form-control" name="address" [(ngModel)]="model.address" #address="ngModel" required />
-                              <div *ngIf="f.submitted && !direccion.valid" class="help-block">Direccion requerido</div>
+                              <div *ngIf="f.submitted && !address.valid" class="help-block">Direccion requerido</div>
                           </div>
                           <br>
                           <hr>
