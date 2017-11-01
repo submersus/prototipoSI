@@ -29,6 +29,5 @@ export class PacienteComponent implements OnInit {
   private buscarPaciente(){
     this.pacienteService.getById(this._id,JSON.parse(localStorage.getItem('token')).token).subscribe(paciente => { this.paciente = paciente; });
   }
-  
 
 }

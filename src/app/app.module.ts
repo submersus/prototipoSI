@@ -25,6 +25,8 @@ import { PacientesComponent } from './components/pacientes/pacientes.component';
 import { PacienteComponent } from './components/paciente/paciente.component';
 import { NavbarComponent } from './components/shared/navbar/navbar.component';
 import { CrearComponent } from './components/historias/crear/crear.component';
+import { VerComponent } from './components/historias/ver/ver.component';
+import { ModificarComponent } from './components/historias/modificar/modificar.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +42,9 @@ import { CrearComponent } from './components/historias/crear/crear.component';
     PacienteComponent,
     NavbarComponent,
     CrearComponent,
-    FileSelectDirective
+    FileSelectDirective,
+    VerComponent,
+    ModificarComponent
   ],
   imports: [
     BrowserModule,

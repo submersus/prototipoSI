@@ -15,7 +15,7 @@ export class CrearComponent implements OnInit {
   currentUser;
   loading: boolean = false;
   paciente:any = { };
-  uploader:FileUploader = new FileUploader({url:'/api/pacientes/'+this.paciente._id+'/upload'+JSON.parse(localStorage.getItem('token')).token});  
+  uploader:FileUploader = new FileUploader({url:`/api/pacientes/${this.paciente._id}/upload?token=${JSON.parse(localStorage.getItem('token')).token}`});  
   model: any = {
       name:"",
       lastname:"",
