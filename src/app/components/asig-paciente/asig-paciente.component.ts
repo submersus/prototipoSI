@@ -33,7 +33,7 @@ export class AsigPacienteComponent implements OnInit {
 
 
 private loadAllUsers() {
-  this.userService.getAll(this.currentUser.token).subscribe(users => { this.users = users; });
+  this.userService.getAll(JSON.parse(localStorage.getItem('token')).token).subscribe(users => { this.users = users; });
 }
 
 asignarPaciente(userId){
