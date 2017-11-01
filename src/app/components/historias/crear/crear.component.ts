@@ -15,7 +15,7 @@ export class CrearComponent implements OnInit {
   currentUser;
   loading: boolean = false;
   paciente:any = { };
-  uploader:FileUploader = new FileUploader({url:'/api/pacientes/'+this.paciente.id+'/upload'+this.currentUser.token});  
+  uploader:FileUploader = new FileUploader({url:'/api/pacientes/'+this.paciente._id+'/upload'+JSON.parse(localStorage.getItem('token'))});  
   model: any = {
       name:"",
       lastname:"",
@@ -152,16 +152,15 @@ export class CrearComponent implements OnInit {
   constructor( private activatedRoute: ActivatedRoute,
                private pacienteService: PacienteService) {
                  
-
     this.activatedRoute.params.subscribe(params => {
-      this.paciente = this.pacienteService.getById(params['id'],this.currentUser.token);
+      this.paciente = this.pacienteService.getById(params['[paciente._id]'], JSON.parse(localStorage.getItem('token')));
       console.log(this.paciente);
     })
 
   }
 
   ngOnInit() {
-    this.currentUser = JSON.parse(localStorage.getItem('token'));
+
   }
 
   guardarHistoria(f){

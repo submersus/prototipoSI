@@ -7,7 +7,6 @@
           <table class="table table-bordered table-dark">
     <thead>
       <tr>
-        <th scope="col">#</th>
         <th scope="col">Nombre</th>
         <th scope="col">Apellido</th>
         <th scope="col">Cedula</th>
@@ -18,13 +17,12 @@
     </thead>
     <tbody>
       <tr>
-        <th scope="row">1</th>
         <td>{{paciente.firstname}}</td>
         <td>{{paciente.lastname}}</td>
-        <td>{{paciente.cedula}}</td>
-        <td>{{paciente.edad}}</td>
+        <td>{{paciente.identifier}}</td>
+        <td>{{paciente.age}}</td>
         <td>{{paciente.gender}}</td>
-        <td>{{paciente.fechanacimiento}}</td>
+        <td>{{paciente.birthdate}}</td>
       </tr>
     </tbody>
   </table>
