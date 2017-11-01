@@ -20,23 +20,24 @@ export class AsigPacienteComponent implements OnInit {
               private router: Router,
               private userService: UserService) {
                 
-    this.currentUser = JSON.parse(localStorage.getItem('token'));
+              }
+
+  ngOnInit() {
+    this.loadAllUsers();
+
     this.activatedRoute.params.subscribe(params => {
-      this.pacient = this.pacienteService.getById(params['id'],this.currentUser.token);
+      this.pacient = this.pacienteService.getById(params['id'],JSON.parse(localStorage.getItem('token')).token).subscribe(paciente=>{this.pacient =paciente;});
     console.log(this.pacient);          
                });
   }
 
-  ngOnInit() {
-    this.loadAllUsers();
-  }
 
 private loadAllUsers() {
   this.userService.getAll(this.currentUser.token).subscribe(users => { this.users = users; });
 }
 
-asignarPaciente(pacientId,userId){
-  this.pacienteService.asignarPaciente(pacientId,userId, this.currentUser.token)
+asignarPaciente(userId){
+  this.pacienteService.asignarPaciente(this.pacient._id,userId,JSON.parse(localStorage.getItem('token')).token)
   .subscribe(
     data => {
               this.alertService.success('Asignado correctamente', true);
