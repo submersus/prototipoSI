@@ -11,8 +11,8 @@ export class UserService {
     return this.http.get('/api/usuarios?token='+ CurrentUser).map((response: Response) => response.json());
   }
 
-  getById(_id: string) {
-      return this.http.get('/api/usuarios/' + _id).map((response: Response) => response.json());
+  getById(_id: string, CurrentUser) {
+      return this.http.get('/api/usuarios/' + _id +'/?token='+ CurrentUser).map((response: Response) => response.json());
   }
 
   create(user) {

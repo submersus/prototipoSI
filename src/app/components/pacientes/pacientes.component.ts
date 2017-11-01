@@ -7,7 +7,19 @@ import { PacienteService } from '../../services/paciente.service';
 })
 export class PacientesComponent implements OnInit {
 
-  pacientes: any[]=[]
+  pacientes: any[]=[
+    {
+      id: 12345678910,
+      firstname:"ivan",
+      lastname:"de menezes",
+      edad: "20",
+      fechanacimiento: "31-01-1998",
+      fecharegistro:"10-10-2017",
+      gender:"Masculino",
+      telefono:"1234569123",
+      cedula:"12345678910"
+    }
+  ]
   currentUser;
   constructor(private pacienteService: PacienteService) {
     this.currentUser = JSON.parse(localStorage.getItem('token'));

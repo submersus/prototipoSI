@@ -5,28 +5,23 @@
         </div>
         <div class="col-md-10 col-sm-8 main-content">
           <div class="container">
-              <div class="row">
-                  <div class="col-md-4">
-                    <div class="scrollBarClass">
-                        <li *ngFor="let paciente of pacientes">
-                            {{paciente.username}} ({{paciente.name}} {{paciente.cedula}})
-                        </li>
+                <div class="row">                
+                        <div class="card-columns" style="margin-bottom: 10px;">
+                                <div *ngFor="let user of users;let i = index" class="card">
+                                    <div class="card-block">
+                                        <h4 class="card-title">{{user.firstname}} {{user.lastname}}</h4>
+                                        <p class="card-text">C.I: {{user.cedula}} <br>
+                                            Semestre: {{user.semestre}} <br>
+                                        </p>
+                                    </div>
+                                    <div class="card-footer">
+                                        <button (click)="asignar()" class="btn btn-outline-primary btn-block"><i class="fa fa-plus" aria-hidden="true"></i> Asignar</button>
+                                    </div>
+                                </div>
+                        </div>
                     </div>
-                  </div>
-                  <div  class="col-md-4">
-                      <button class="btn btn-circle btn-secondary">
-                        <i class="fa fa-chevron-right"></i>
-                      </button>
-                  </div>
-                  <div class="col-md-4">
-                    <div class="scrollBarClass">
-                        <li *ngFor="let user of users">
-                                {{user.username}} ({{user.name}} {{user.cedula}})
-                        </li>
-                    </div>
-                  </div>
               </div>
               <button [routerLink]="'/home'" class="btn btn-outline-danger btn-block">REGRESAR</button>
-          </div>
         </div>
     </div>
+</div>

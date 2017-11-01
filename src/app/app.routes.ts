@@ -16,10 +16,10 @@ const ROUTES: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'home', component: InicioComponent, canActivate:[AuthGuardService]},
   { path: 'rpaciente', component: RpacienteComponent, canActivate:[AuthGuardService]},
-  { path: 'apaciente', component: AsigPacienteComponent, canActivate:[AuthGuardService]},
+  { path: 'apaciente/:id', component: AsigPacienteComponent, canActivate:[AuthGuardService]},
   { path: 'pacientes', component: PacientesComponent, canActivate:[AuthGuardService] },
   { path: 'paciente/:id', component: PacienteComponent, canActivate:[AuthGuardService] },
-  { path: 'crear', component: CrearComponent, canActivate:[AuthGuardService] },
+  { path: 'crear/:id', component: CrearComponent, canActivate:[AuthGuardService] },
   {path:'**', pathMatch:'full', redirectTo: '/login'}
 ];
 

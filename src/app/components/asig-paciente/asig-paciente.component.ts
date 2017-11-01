@@ -10,7 +10,6 @@ import { UserService } from '../../services/user.service';
 })
 export class AsigPacienteComponent implements OnInit {
   currentUser;
-  pacientes:any[]=[];
   users = [];
 
   constructor(private pacienteService: PacienteService,
@@ -20,15 +19,15 @@ export class AsigPacienteComponent implements OnInit {
                }
 
   ngOnInit() {
-    this.loadAllPacientes();
     this.loadAllUsers();
   }
 
-private loadAllPacientes() {
-  this.pacienteService.getAll(this.currentUser.token).subscribe(pacientes => { this.pacientes = pacientes; });
-}
 private loadAllUsers() {
   this.userService.getAll(this.currentUser.token).subscribe(users => { this.users = users; });
+}
+
+asignar(){
+  
 }
 
 

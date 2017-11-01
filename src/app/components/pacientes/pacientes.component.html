@@ -8,7 +8,7 @@
                 <div  class="card-columns" style="margin-bottom: 10px;">
                     <div *ngFor="let paciente of pacientes;let i = index" class="card">
                         <div class="card-block">
-                        <h4 class="card-title">{{paciente.nombre}}</h4>
+                        <h4 class="card-title">{{paciente.firstname}} {{paciente.lastname}}</h4>
                         <p class="card-text">C.I: {{paciente.cedula}} <br>
                                              Edad: {{paciente.edad}} <br>
                                              sexo: {{paciente.gender}}<br>
@@ -16,9 +16,17 @@
                         </p>
                     </div>
                     <div class="card-footer">
-                    <div>  
-                        <a [routerLink]="['/paciente',i]" class="btn btn-block btn-primary">Historia Clinica</a>
-                    </div>
+                        <div class="btn-group" role="group">
+                            <button  id="btnGroupDrop1" type="button" class="btn dropdown-toggle btn-outline-primary text-right" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fa fa-bars" aria-hidden="true"></i>
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                <a [routerLink]="['/crear',paciente._id]" class="dropdown-item">Agregar Historia</a>
+                                <a [routerLink]="['/apaciente',paciente._id]" class="dropdown-item" >Asignar Paciente</a>
+                                <a [routerLink]="['/paciente',paciente._id]" class="dropdown-item">Ver detalles</a>
+                            </div>
+                        </div>
+                        <br>
                     <small class="text-muted">{{paciente.fecharegistro}}</small>
                     </div>
                     </div>

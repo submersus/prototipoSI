@@ -18,6 +18,7 @@ const URL = 'http://localhost:8000/api/upload';
 export class RpacienteComponent implements OnInit {
   model: any = {};
   loading = false;
+  currentUser
   semestres =[
     {name:'Quinto', value:'5', checked:false},
     {name:'Sexto', value:'6', checked:false},
@@ -31,17 +32,19 @@ export class RpacienteComponent implements OnInit {
     private http: Http,
     private router: Router,
     private alertService: AlertService,
-    private pacienteService: PacienteService){ }
+    private pacienteService: PacienteService){
+      this.currentUser = JSON.parse(localStorage.getItem('token'));
+     }
 
   ngOnInit() {
   }
   registrarPaciente() {
     this.loading = true;
-    this.pacienteService.create(this.model)
+    this.pacienteService.create(this.model, this.currentUser.token)
     .subscribe(
       data => {
                 this.alertService.success('Registration successful', true);
-                this.router.navigate(['/inicio']);
+                this.router.navigate(['/pacientes']);
             },
             error => {
                 this.alertService.error(error);

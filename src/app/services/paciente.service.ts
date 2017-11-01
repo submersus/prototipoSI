@@ -9,19 +9,15 @@ export class PacienteService {
    }
 
   getAll(currentUser) {
-    return this.http.get('/api/pacientes').map((response: Response) => response.json());
+    return this.http.get('/api/pacientes?token='+ currentUser).map((response: Response) => response.json());
   }
 
-  getById(_id: string) {
-      return this.http.get('/api/pacientes/' + _id).map((response: Response) => response.json());
+  getById(_id: string, currentUser) {
+      return this.http.get('/api/pacientes/'+ _id+'/?token='+ currentUser).map((response: Response) => response.json());
   }
 
-  create(paciente) {
-      return this.http.post('/api/pacientes', paciente);
-  }
-
-  upload(formData){
-    return this.http.request('/api/paciente/upload', formData);
+  create(paciente,currentUser) {
+      return this.http.post('/api/pacientes/?token='+currentUser, paciente);
   }
 
   buscarPaciente( listaPacientes, termino: string) {

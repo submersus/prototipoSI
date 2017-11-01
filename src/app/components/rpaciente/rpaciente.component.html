@@ -32,7 +32,7 @@
                         </div>
                         <div class="form-group row" [ngClass]="{ 'has-error': f.submitted && !cedula.valid }">
                             <label for="fecha">fecha de nacimiento:</label>
-                            <input type="text" class="form-control" name="fecha" [(ngModel)]="model.fecha" #fecha="ngModel" required />
+                            <input type="text" class="form-control" name="fecha" [(ngModel)]="model.fechanacimiento" #fecha="ngModel" required />
                             <div *ngIf="f.submitted && !fecha.valid" class="help-block">Fecha requerida</div>
                         </div>
                         <div class="form-group row" [ngClass]="{ 'has-error': f.submitted && !cedula.valid }">

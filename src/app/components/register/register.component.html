@@ -11,7 +11,7 @@
                             <label for="reg_username" class="sr-only">Nombre</label>
                             <input type="text" class="form-control" id="reg_username" name="nombre" placeholder="Nombre" [(ngModel)]="model.firstname" #firstname="ngModel" required >
                         </div>
-                        <div *ngIf="f.submitted && !firstName.valid" class="help-block">Nombre requerido</div>
+                        <div *ngIf="f.submitted && !firstname.valid" class="help-block">Nombre requerido</div>
                         <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
                             <label for="reg_password" class="sr-only">Apellido</label>
                             <input type="text" class="form-control" id="reg_password" placeholder="Apellido" name="apellido" [(ngModel)]="model.lastname" #lastname="ngModel" required>
@@ -39,5 +39,6 @@
                     <p>Regresar <a [routerLink]="['/home']">Click Aqui</a></p>
                 </div>
             </form>
+            
         </div>
         <!-- end:Main Form -->

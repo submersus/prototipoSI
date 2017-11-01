@@ -12,9 +12,10 @@ import { PacienteService  } from '../../../services/paciente.service';
   styleUrls: ['./crear.component.css']
 })
 export class CrearComponent implements OnInit {
-  uploader:FileUploader = new FileUploader({url:'/api/pacientes/upload'});  
+  currentUser;
   loading: boolean = false;
   paciente:any = { };
+  uploader:FileUploader = new FileUploader({url:'/api/pacientes/'+this.paciente.id+'/upload'+this.currentUser.token});  
   model: any = {
       name:"",
       lastname:"",
@@ -150,14 +151,17 @@ export class CrearComponent implements OnInit {
 
   constructor( private activatedRoute: ActivatedRoute,
                private pacienteService: PacienteService) {
+                 
 
     this.activatedRoute.params.subscribe(params => {
-      this.paciente = this.pacienteService.getById(params['id']);
+      this.paciente = this.pacienteService.getById(params['id'],this.currentUser.token);
+      console.log(this.paciente);
     })
 
   }
 
   ngOnInit() {
+    this.currentUser = JSON.parse(localStorage.getItem('token'));
   }
 
   guardarHistoria(f){
