@@ -15,7 +15,7 @@ export class CrearComponent implements OnInit {
   currentUser;
   loading: boolean = false;
   paciente:any = { };
-  uploader:FileUploader = new FileUploader({url:'/api/pacientes/'+this.paciente._id+'/upload'+JSON.parse(localStorage.getItem('token'))});  
+  uploader:FileUploader = new FileUploader({url:'/api/pacientes/'+this.paciente._id+'/upload'+JSON.parse(localStorage.getItem('token')).token});  
   model: any = {
       name:"",
       lastname:"",
@@ -153,7 +153,7 @@ export class CrearComponent implements OnInit {
                private pacienteService: PacienteService) {
                  
     this.activatedRoute.params.subscribe(params => {
-      this.paciente = this.pacienteService.getById(params['[paciente._id]'], JSON.parse(localStorage.getItem('token')));
+      this.paciente = this.pacienteService.getById(params['id'], JSON.parse(localStorage.getItem('token')).token).subscribe( paciente=> {this.paciente = paciente;} );
       console.log(this.paciente);
     })
 
