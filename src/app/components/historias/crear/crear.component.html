@@ -136,7 +136,7 @@
             <br>
             <h5 class="text-center">AMNESTESIA</h5>
             <hr>
-            <div *ngFor="let pregunta of preguntas;let i = index">
+            <div *ngFor="let pregunta of model.preguntas;let i = index">
               <label>{{pregunta.nombre}}</label>
               <div class="form-group row">
                   <div *ngFor="let v of valores" class="form-check form-check-inline">
@@ -149,7 +149,7 @@
                        <label for="example-search-input" class="col-2 col-form-label">Especifique</label>
                        <div class="col-6">
                          <textarea [(ngModel)]="pregunta.especifique" class="form-control" name="especifique{{i}}" rows="3"></textarea>
-                         <input hidden name="nombre{{i}}" [(ngModel)]="pregunta.nombre" value="pregunta.nombre">
+                         <input *ngIf="pregunta.valor == 'si'" hidden name="nombre{{i}}" [(ngModel)]="pregunta.nombre" value="pregunta.nombre">
                        </div>
                   </div>
              </div>  <!-- Fin del ngFor -->
