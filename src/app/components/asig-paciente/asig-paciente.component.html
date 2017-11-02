@@ -15,8 +15,7 @@
                                         </p>
                                     </div>
                                     <div class="card-footer">
-                                        <button *ngIf="deshabilitar(user._id)" (click)="asignarPaciente(user._id)" class="btn btn-outline-primary btn-block"><i class="fa fa-plus" aria-hidden="true"></i> Asignar</button>
-                                        <p *ngIf="!deshabilitar(user._id)">Asignado!</p>
+                                        <button (click)="asignarPaciente(user._id)" class="btn btn-outline-primary btn-block"><i class="fa fa-plus" aria-hidden="true"></i> Asignar</button>
                                     </div>
                                 </div>
                         </div>

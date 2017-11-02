@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from '../../services/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -6,10 +8,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-
-  constructor() { }
+  estudiante;
+  constructor(private userService: UserService) { }
 
   ngOnInit() {
+
+    this.estudiante = this.userService.getById(JSON.parse(localStorage.getItem('token'))._id, JSON.parse(localStorage.getItem('token')).token).subscribe(estudiante => { this.estudiante = estudiante; });
+    
   }
 
 }

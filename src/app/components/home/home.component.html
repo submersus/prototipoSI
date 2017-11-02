@@ -1,3 +1,42 @@
-
-
-<button [routerLink]="'login'" type="button" class="btn btn-block btn-success">Login</button>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-2 col-sm-4 sidebar1">
+            <app-navbar></app-navbar>
+        </div>
+        <div class="col-md-10 col-sm-8 main-content">
+            <div class="container">
+                <div class="row">
+                    <h3 class="text-center">Paciente Asignados</h3>
+                    <div *ngFor="let paciente of estudiante.pacients" class="col-sm-4" style="margin-bottom: 10px;">
+                        <div class="card">
+                            <div class="card-block">
+                                <h4 class="card-title">{{paciente.firstname}} {{paciente.lastname}}</h4>
+                                <p class="card-text">C.I: {{paciente.identifier}}
+                                    <br> Edad: {{paciente.age}}
+                                    <br> sexo: {{paciente.gender}}
+                                    <br> Fecha de nacimiento:
+                                    <br> {{paciente.birthdate| date }}
+                                </p>
+                            </div>
+                            <div class="card-footer">
+                                <div class="btn-group" role="group">
+                                    <button id="btnGroupDrop1" type="button" class="btn dropdown-toggle btn-outline-primary text-right" data-toggle="dropdown"
+                                        aria-haspopup="true" aria-expanded="false">
+                                        <i class="fa fa-bars" aria-hidden="true"></i>
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                        <a [routerLink]="['/paciente',paciente._id]" class="dropdown-item">Ver detalles</a>
+                                    </div>
+                                </div>
+                                <br>
+                                <small class="text-muted">{{paciente.registerdate | date}}</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <button [routerLink]="'/home'" class="btn btn-outline-danger btn-block">REGRESAR</button>
+        </div>
+    </div>
+</div>

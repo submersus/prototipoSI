@@ -13,43 +13,43 @@
             <div class="form-group row">
               <label class="col-sm-2 col-form-label">Nombre</label>
               <div class="col-sm-10">
-                <input class="form-control"  name="firstname" [(ngModel)]="model.firstname" type="text" placeholder='{{paciente.firstname}}' value="{{paciente.firstname}}"  readonly>
+                <input class="form-control"  name="firstname" type="text" placeholder='{{paciente.firstname}}' value="{{paciente.firstname}}"  readonly>
               </div>
             </div>
             <div class="form-group row">
               <label class="col-sm-2 col-form-label">Apellido:</label>
               <div class="col-sm-10">
-                <input class="form-control"  name="lastname" [(ngModel)]="model.lastname"  type="text" placeholder="{{paciente.lastname}}" value="{{paciente.lastname}}" readonly>
+                <input class="form-control"  name="lastname"  type="text" placeholder="{{paciente.lastname}}" value="{{paciente.lastname}}" readonly>
              </div>
             </div>
             <div class="form-group row">
               <label class="col-sm-2 col-form-label">Cedula:</label>
               <div class="col-sm-10">
-                <input class="form-control"  name="identifier" [(ngModel)]="model.identifier"  type="text" placeholder="{{paciente.identifier}}" value="{{paciente.identifier}}" readonly>    
+                <input class="form-control"  name="identifier"  type="text" placeholder="{{paciente.identifier}}" value="{{paciente.identifier}}" readonly>    
               </div>
             </div>
             <div class="form-group row">
               <label class="col-sm-2 col-form-label">Fecha de nacimiento:</label>
               <div class="col-sm-10">
-                  <input class="form-control"  name="birthdate" [(ngModel)]="model.birthdate"  type="text" placeholder="{{paciente.birthdate | date}}" value="{{paciente.birthdate}}" readonly>
+                  <input class="form-control"  name="birthdate"  type="text" placeholder="{{paciente.birthdate | date}}" value="{{paciente.birthdate}}" readonly>
               </div>
             </div>
             <div class="form-group row">
               <label class="col-sm-2 col-form-label">Edad:</label>
               <div class="col-sm-10">
-                  <input class="form-control"  name="age" [(ngModel)]="model.age"  type="text" placeholder="{{paciente.age}}" value="{{paciente.age}}" readonly>
+                  <input class="form-control"  name="age"  type="text" placeholder="{{paciente.age}}" value="{{paciente.age}}" readonly>
               </div>
             </div>
             <div class="form-group row">
               <label class="col-sm-2 col-form-label">Telefono:</label>
               <div class="col-sm-10">
-                  <input class="form-control"  name="telephone" [(ngModel)]="model.telephone"  type="text" placeholder="{{paciente.telephone}}" value="{{paciente.telephone}}" readonly>
+                  <input class="form-control"  name="telephone"  type="text" placeholder="{{paciente.telephone}}" value="{{paciente.telephone}}" readonly>
               </div>
             </div>
             <div class="form-group row">
               <label class="col-sm-2 col-form-label">Fecha registro:</label>
               <div class="col-sm-10">
-                  <input class="form-control"  name="registerdate" [(ngModel)]="model.registerdate"  type="text" placeholder="{{paciente.registerdate | date }}" value="{{paciente.registerdate | date}}" readonly>
+                  <input class="form-control"  name="registerdate"   type="text" placeholder="{{paciente.registerdate | date }}" value="{{paciente.registerdate | date}}" readonly>
               </div>
             </div>
             <hr>
@@ -136,12 +136,12 @@
             <br>
             <h5 class="text-center">AMNESTESIA</h5>
             <hr>
-            <div *ngFor="let pregunta of model.preguntas;let i = index">
+            <div *ngFor="let pregunta of preguntas;let i = index">
               <label>{{pregunta.nombre}}</label>
               <div class="form-group row">
                   <div *ngFor="let v of valores" class="form-check form-check-inline">
                       <label class="form-check-label col-2 col-form-label">
-                          <input class="form-check-input" type="radio" name="pregunta{{i}}" [(ngModel)]="pregunta.valor" value="{{v}}"> {{v}}
+                          <input class="form-check-input" type="radio" name="{{pregunta.nombre}}" [(ngModel)]="pregunta.valor" value="{{v}}"> {{v}}
                       </label>
                   </div>
                </div>  <!-- fin del form-group -->
@@ -149,7 +149,6 @@
                        <label for="example-search-input" class="col-2 col-form-label">Especifique</label>
                        <div class="col-6">
                          <textarea [(ngModel)]="pregunta.especifique" class="form-control" name="especifique{{i}}" rows="3"></textarea>
-                         <input *ngIf="pregunta.valor == 'si'" hidden name="nombre{{i}}" [(ngModel)]="pregunta.nombre" value="pregunta.nombre">
                        </div>
                   </div>
              </div>  <!-- Fin del ngFor -->

@@ -7,9 +7,9 @@ export class HistoriasService {
   constructor(private http: Http) { }
 
 
-  create(historia,token){
+  create(historia,pacientId,token){
 
-    return this.http.post(`/api/historias?token=${token}`,historia);
+    return this.http.post(`/api/historias?token=${token}`, historia, pacientId);
   }
 
 }
