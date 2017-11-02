@@ -168,7 +168,7 @@ export class CrearComponent implements OnInit {
 
   guardarHistoria(historia){
     console.log(historia);
-    this.historiasService.create(historia).subscribe(
+    this.historiasService.create(historia, JSON.parse(localStorage.getItem('token')).token).subscribe(
       data=>{
         this.router.navigate(['/home']);
       },error=>{
