@@ -4,6 +4,7 @@ import { ActivatedRoute,Router } from '@angular/router';
 import { Http, Response } from '@angular/http';
 import { AlertService } from '../../../services/alert.service';
 import { PacienteService  } from '../../../services/paciente.service';
+import { HistoriasService  } from '../../../services/historias.service';
 
 
 @Component({
@@ -150,6 +151,8 @@ export class CrearComponent implements OnInit {
   valores = ["si","no"];
 
   constructor( private activatedRoute: ActivatedRoute,
+               private historiasService: HistoriasService,
+               private router: Router,
                private pacienteService: PacienteService) {
                  
     this.activatedRoute.params.subscribe(params => {
@@ -163,25 +166,16 @@ export class CrearComponent implements OnInit {
 
   }
 
-  guardarHistoria(f){
-    console.log(f);
+  guardarHistoria(historia){
+    console.log(historia);
+    this.historiasService.create(historia).subscribe(
+      data=>{
+        this.router.navigate(['/home']);
+      },error=>{
+        console.log(error);
+      }
+    )
   }
-  // upload() {
-  //   //locate the file element meant for the file upload.
-  //   let fileBrowser = this.fileInput.nativeElement;
-  //   let formData = new FormData();
-  //   if (fileBrowser.files && fileBrowser.files[0]) {
-  //     const formData = new FormData();
-  //     formData.append("image", fileBrowser.files[0]);
-  //     this.pacienteService.upload(formData).subscribe(
-  //       res => {       
-  //         this.alertService.success('upload successful', true);
-  //       },
-  //       error => {
-  //         this.alertService.error(error);
-  //       })
-  //     } 
-    
-  //   }
+
 
 }

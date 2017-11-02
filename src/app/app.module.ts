@@ -15,6 +15,7 @@ import { UserService } from "./services/user.service";
 import { AuthenticationService } from "./services/authentication.service";
 import { AuthGuardService } from "./services/auth-guard.service";
 import { PacienteService } from "./services/paciente.service";
+import { HistoriasService } from "./services/historias.service";
 
 import { ROUTING } from "./app.routes";
 import { HomeComponent } from './components/home/home.component';
@@ -57,7 +58,8 @@ import { ModificarComponent } from './components/historias/modificar/modificar.c
     UserService,
     AuthenticationService,
     AuthGuardService,
-    PacienteService
+    PacienteService,
+    HistoriasService
   ],
   bootstrap: [AppComponent]
 })
