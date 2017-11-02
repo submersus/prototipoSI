@@ -146,19 +146,19 @@ export class CrearComponent implements OnInit {
                private router: Router,
                private pacienteService: PacienteService) {
                  
-    this.activatedRoute.params.subscribe(params => {
-      this.paciente = this.pacienteService.getById(params['id'], JSON.parse(localStorage.getItem('token')).token).subscribe( paciente=> {this.paciente = paciente;} );
-    })
-
+   
   }
 
   ngOnInit() {
-
+    this.activatedRoute.params.subscribe(params => {
+      this.paciente = this.pacienteService.getById(params['id'], JSON.parse(localStorage.getItem('token')).token).subscribe(paciente => { this.paciente = paciente; });
+    })
   }
 
-  guardarHistoria(historia){
-    console.log(historia);
-    this.historiasService.create(historia,this.paciente._id, JSON.parse(localStorage.getItem('token')).token).subscribe(
+  guardarHistoria(){
+    console.log(this.preguntas)
+    console.log("este es el paciente que te envio",this.paciente._id)
+    this.historiasService.create(this.preguntas,this.paciente._id, JSON.parse(localStorage.getItem('token')).token).subscribe(
       data=>{
         this.router.navigate(['/home']);
       },error=>{

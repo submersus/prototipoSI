@@ -9,7 +9,7 @@
             <h2>Historia clinica del paciente: {{paciente.firstname || "Paciente"}} {{paciente.lastname || "de Prueba"}}</h2>
         </div>
         <div class="container scrollBarClass">
-          <form (ngSubmit)="f.form.valid && guardarHistoria(f.value)" #f="ngForm" novalidate>     
+          <form (ngSubmit)="f.form.valid && guardarHistoria()" #f="ngForm" novalidate>     
             <div class="form-group row">
               <label class="col-sm-2 col-form-label">Nombre</label>
               <div class="col-sm-10">
