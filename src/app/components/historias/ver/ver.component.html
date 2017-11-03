@@ -5,67 +5,68 @@
     </div>
     <div class="col-md-10 col-sm-8 main-content">
       <div class="text-center">
-        <h2>Historia clinica del paciente: {{paciente.firstname || "Paciente"}} {{paciente.lastname || "de Prueba"}}</h2>
+        <h2>Historia clinica del paciente: {{historia.patient.firstname}} {{historia.patient.lastname}}</h2>
       </div>
       <div class="container scrollBarClass">
         <form>
           <div class="form-group row">
             <label class="col-sm-2 col-form-label">Nombre</label>
             <div class="col-sm-10">
-              <input class="form-control" name="firstname" type="text" placeholder='{{paciente.firstname}}' value="{{paciente.firstname}}"
+              <input class="form-control" name="firstname" type="text" placeholder='{{historia?.patient.firstname}}'
                 readonly>
             </div>
           </div>
           <div class="form-group row">
             <label class="col-sm-2 col-form-label">Apellido:</label>
             <div class="col-sm-10">
-              <input class="form-control" name="lastname" type="text" placeholder="{{paciente.lastname}}" value="{{paciente.lastname}}"
+              <input class="form-control" name="lastname" type="text" placeholder="{{historia.patient.lastname}}"
                 readonly>
             </div>
           </div>
           <div class="form-group row">
             <label class="col-sm-2 col-form-label">Cedula:</label>
             <div class="col-sm-10">
-              <input class="form-control" name="identifier" type="text" placeholder="{{paciente.identifier}}" value="{{paciente.identifier}}"
+              <input class="form-control" name="identifier" type="text" placeholder="{{historia.patient.identifier}}"
                 readonly>
             </div>
           </div>
           <div class="form-group row">
             <label class="col-sm-2 col-form-label">Fecha de nacimiento:</label>
             <div class="col-sm-10">
-              <input class="form-control" name="birthdate" type="text" placeholder="{{paciente.birthdate | date}}" value="{{paciente.birthdate}}"
+              <input class="form-control" name="birthdate" type="text" placeholder="{{historia.patient.birthdate | date}}"
                 readonly>
             </div>
           </div>
           <div class="form-group row">
             <label class="col-sm-2 col-form-label">Edad:</label>
             <div class="col-sm-10">
-              <input class="form-control" name="age" type="text" placeholder="{{paciente.age}}" value="{{paciente.age}}" readonly>
+              <input class="form-control" name="age" type="text" placeholder="{{historia.patient.age}}" readonly>
             </div>
           </div>
           <div class="form-group row">
             <label class="col-sm-2 col-form-label">Telefono:</label>
             <div class="col-sm-10">
-              <input class="form-control" name="telephone" type="text" placeholder="{{paciente.telephone}}" value="{{paciente.telephone}}"
+              <input class="form-control" name="telephone" type="text" placeholder="{{historia.patient.telephone}}"
                 readonly>
             </div>
           </div>
           <div class="form-group row">
             <label class="col-sm-2 col-form-label">Fecha registro:</label>
             <div class="col-sm-10">
-              <input class="form-control" name="registerdate" type="text" placeholder="{{paciente.registerdate | date }}" value="{{paciente.registerdate | date}}" readonly>
+              <input class="form-control" name="registerdate" type="text" placeholder="{{historia.patient.registerdate | date }}" readonly>
             </div>
           </div>
           <hr>
           <br>
           <h5 class="text-center">AMNESTESIA</h5>
           <hr>
-          <div *ngFor="let pregunta of historia.anamnesis | async ;let i = index">
-            <label>{{pregunta?.nombre}}</label>
+
+          <div *ngFor="let pregunta of historia?.clinicalHistory.anamnesis ;let i = index">
+            <label>{{pregunta.nombre}}</label>
             <div class="form-group row">
               <div *ngFor="let v of valores" class="form-check form-check-inline">
                 <label class="form-check-label col-2 col-form-label">
-                  <input class="form-check-input" disabled type="radio" name="{{pregunta?.nombre}}" [(ngModel)]="pregunta.valor" value="{{v}}"> {{v}}
+                  <input class="form-check-input" disabled type="radio" name="{{pregunta.nombre}}" [(ngModel)]="pregunta.valor" value="{{v}}"> {{v}}
                 </label>
               </div>
             </div>

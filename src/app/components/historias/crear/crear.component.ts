@@ -155,7 +155,7 @@ export class CrearComponent implements OnInit {
   }
 
   guardarHistoria(){
-    this.historiasService.create(this.preguntas,this.paciente._id, JSON.parse(localStorage.getItem('token')).token).subscribe(
+    this.historiasService.create(this.preguntas, this.paciente._id, JSON.parse(localStorage.getItem('token')).token, JSON.parse(localStorage.getItem('token'))._id).subscribe(
       data=>{
         this.router.navigate(['/home']);
       },error=>{
