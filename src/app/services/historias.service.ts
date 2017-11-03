@@ -13,7 +13,7 @@ export class HistoriasService {
   }
 
   getHistoria(_id,token){
-    return this.http.get('');
+    return this.http.get(`/api/historias/${_id}?token=${token}`).map((response: Response) => response.json());
   }
 
 }

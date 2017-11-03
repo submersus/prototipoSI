@@ -12,8 +12,9 @@ import { Http, Response } from '@angular/http';
 export class VerComponent implements OnInit {
   _id;
   paciente;
+  historia
   preguntas;
-  valores;
+  valores=['si','no'];
   constructor(private activatedRoute: ActivatedRoute,
     private historiasService: HistoriasService,
     private router: Router,
@@ -25,14 +26,20 @@ export class VerComponent implements OnInit {
     });
 
     this.buscarPaciente();
+
   }
 
   private buscarPaciente() {
-    this.pacienteService.getById(this._id, JSON.parse(localStorage.getItem('token')).token).subscribe(paciente => { this.paciente = paciente; console.log(paciente) });
+    this.pacienteService.getById(this._id, JSON.parse(localStorage.getItem('token')).token).subscribe(paciente => { this.paciente = paciente; console.log(paciente);
+
+      this.historiasService.getHistoria(paciente.historyClinicId, JSON.parse(localStorage.getItem('token')).token).subscribe(historia => { this.historia = historia; console.log(historia) });
+
+     });
   }
 
-  private buscarHistoria(){
-    this.historiasService.getHistoria(this._id,JSON.parse(localStorage.getItem('token')).token)
+
+  private cargadoTodo(){
+    console.log("ya se cargo todo");
   }
 
 }

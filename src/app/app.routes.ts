@@ -9,6 +9,7 @@ import { RpacienteComponent } from './components/rpaciente/rpaciente.component';
 import { PacienteComponent } from './components/paciente/paciente.component';
 import { HomeComponent } from './components/home/home.component';
 import { CrearComponent } from './components/historias/crear/crear.component';
+import { VerComponent } from './components/historias/ver/ver.component';
 /* Services */
 import { AuthGuardService } from "./services/auth-guard.service"
 
@@ -22,6 +23,7 @@ const ROUTES: Routes = [
   { path: 'pacientes', component: PacientesComponent, canActivate:[AuthGuardService] },
   { path: 'paciente/:id', component: PacienteComponent, canActivate:[AuthGuardService] },
   { path: 'crear/:id', component: CrearComponent, canActivate:[AuthGuardService] },
+  { path: 'ver/:id', component: VerComponent, canActivate:[AuthGuardService] },
   {path:'**', pathMatch:'full', redirectTo: '/login'}
 ];
 
