@@ -13,8 +13,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
 
-    this.estudiante = this.userService.getById(JSON.parse(localStorage.getItem('token'))._id, JSON.parse(localStorage.getItem('token')).token).subscribe(estudiante => { this.estudiante = estudiante; console.log(estudiante) });
-    
-  }
+    this.estudiante = JSON.parse(localStorage.getItem('token'));
+     }
 
 }
