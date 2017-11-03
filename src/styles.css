@@ -1,16 +1,17 @@
 .sidebar1 {
     background: rgb(30, 113, 133) !important;
     /* For browsers that do not support gradients */
-    background: -webkit-linear-gradient(rgb(30, 113, 133), rgb(30, 113, 133), #397fb9) !important;
+    background: -webkit-linear-gradient(rgb(12, 31, 36), rgb(30, 113, 133), #050c13) !important;
     /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient(rgb(30, 113, 133), rgb(31, 125, 146), #397fb9) !important;
+    background: -o-linear-gradient(rgb(92, 104, 107), rgb(31, 125, 146), #050c13) !important;
     /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(rgb(30, 113, 133), rgb(31, 125, 146), #397fb9) !important;
+    background: -moz-linear-gradient(rgb(4, 19, 22), rgb(31, 125, 146), #050c13) !important;
     /* For Firefox 3.6 to 15 */
-    background: linear-gradient(rgb(30, 113, 133), rgb(31, 125, 146), #397fb9) !important;
+    background: linear-gradient(rgb(113, 122, 124), rgb(51, 67, 70), #050c13) !important;
     /* Standard syntax */
     padding: 0px !important;
     min-height: 100% !important;
+    max-height: 100%!important;
 }
 .logo {
     max-height: 130px !important;

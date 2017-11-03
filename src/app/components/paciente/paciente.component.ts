@@ -20,14 +20,13 @@ export class PacienteComponent implements OnInit {
   ngOnInit() {
     this.activatedRoute.params.subscribe(params => {
       this._id= params['id'];
-      console.log(params['id']);
   });
 
   this.buscarPaciente();
   }
 
   private buscarPaciente(){
-    this.pacienteService.getById(this._id,JSON.parse(localStorage.getItem('token')).token).subscribe(paciente => { this.paciente = paciente; });
+    this.pacienteService.getById(this._id,JSON.parse(localStorage.getItem('token')).token).subscribe(paciente => { this.paciente = paciente; console.log(paciente)});
   }
 
 }
