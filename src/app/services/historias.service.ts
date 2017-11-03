@@ -9,7 +9,7 @@ export class HistoriasService {
 
   create(historia,pacientId,token){
 
-    return this.http.post(`/api/historias?token=${token}`, historia, pacientId);
+    return this.http.post(`/api/historias?token=${token}&patientId=${pacientId}`, historia);
   }
 
 }
