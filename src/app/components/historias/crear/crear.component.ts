@@ -13,10 +13,9 @@ import { HistoriasService  } from '../../../services/historias.service';
   styleUrls: ['./crear.component.css']
 })
 export class CrearComponent implements OnInit {
-  currentUser;
   loading: boolean = false;
-  paciente:any = { };
-  uploader:FileUploader = new FileUploader({url:`/api/pacientes/${this.paciente._id}/upload?token=${JSON.parse(localStorage.getItem('token')).token}`});  
+  paciente;
+  uploader  
 
   preguntas= [{
       nombre:"¿Alteraciones cardiovasculares?",
@@ -145,19 +144,17 @@ export class CrearComponent implements OnInit {
                private historiasService: HistoriasService,
                private router: Router,
                private pacienteService: PacienteService) {
-                 
-   
+
+    this.uploader = setTimeout(() => { this.uploader = new FileUploader({ url: `/api/pacientes/${this.paciente._id}/upload?token=${JSON.parse(localStorage.getItem('token')).token}` }, );},3000) 
   }
 
   ngOnInit() {
-    this.activatedRoute.params.subscribe(params => {
-      this.paciente = this.pacienteService.getById(params['id'], JSON.parse(localStorage.getItem('token')).token).subscribe(paciente => { this.paciente = paciente; });
-    })
+     this.activatedRoute.params.subscribe(params => {
+      this.paciente = this.pacienteService.getById(params['id'], JSON.parse(localStorage.getItem('token')).token).subscribe(paciente => { this.paciente = paciente;});
+    }) 
   }
 
   guardarHistoria(){
-    console.log(this.preguntas)
-    console.log("este es el paciente que te envio",this.paciente._id)
     this.historiasService.create(this.preguntas,this.paciente._id, JSON.parse(localStorage.getItem('token')).token).subscribe(
       data=>{
         this.router.navigate(['/home']);
