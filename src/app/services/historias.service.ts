@@ -12,6 +12,10 @@ export class HistoriasService {
     return this.http.post(`/api/historias?token=${token}&patientId=${pacientId}`, historia);
   }
 
+  getHistoria(_id,token){
+    return this.http.get('');
+  }
+
 }
 
 

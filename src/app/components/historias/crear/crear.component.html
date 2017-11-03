@@ -9,7 +9,7 @@
             <h2>Historia clinica del paciente: {{paciente.firstname || "Paciente"}} {{paciente.lastname || "de Prueba"}}</h2>
         </div>
         <div class="container scrollBarClass">
-          <form (ngSubmit)="f.form.valid && guardarHistoria()" #f="ngForm" novalidate>     
+          <form enctype = "multipart/form-data" name="history" (ngSubmit)="f.form.valid && guardarHistoria()" #f="ngForm" novalidate>     
             <div class="form-group row">
               <label class="col-sm-2 col-form-label">Nombre</label>
               <div class="col-sm-10">
@@ -54,15 +54,12 @@
             </div>
             <hr>
             <br>
-            <h5 class="text-center">Archivos de la historia</h5>
+            <h5 class="text-center">Archivos de la Historia</h5>
             <hr>
             <div class="row">
               <div class="col-md-3">
                 <h5>Seleccione los Archivos</h5>
-                Para subir multiples archivos
-                <input type="file" ng2FileSelect [uploader]="uploader" multiple  /><br/>
-                <br>
-                Para subir un solo archivo
+                <p class="text-muted text-center">Para subir un solo archivo</p>
                 <input type="file" ng2FileSelect [uploader]="uploader" />
               </div>
               <div class="col-md-9" style="margin-bottom: 40px">
